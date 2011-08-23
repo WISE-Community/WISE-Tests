@@ -1,6 +1,8 @@
 # Simple Integration/Acceptance testing for WISE4
 
-Uses Ruby and the Ruby gems: capybara, selenium-webdriver, and rspec to create a simple integration/acceptance test structure for WISE4.
+Uses Ruby and the Ruby gems: [capybara](http://rubydoc.info/github/jnicklas/capybara/master/file/README.rdoc), [RSpec](http://relishapp.com/rspec), and [selenium-webdriver](https://rubygems.org/gems/selenium-webdriver) to create a simple integration/acceptance test system for WISE4.
+
+The tests expect an instance of WISE4 to be running at http://localhost:8080
 
 ## Setup
 
@@ -19,19 +21,19 @@ Clone the wise4-test repository:
     git clone git://github.com/concord-consortium/wise4-test.git
     cd wise4-test
 
-Create an .rvmrc file to ise ruby 1.9.2 and a wise4-test gemset
+Create an .rvmrc file to use ruby 1.9.2 and a wise4-test gemset whenever you change to this wise4-test directory:
 
     echo 'rvm use 1.9.2@wise4-test --create' > .rvmrc
 
-Change out of and back into the directory to enable the .rvmrc file
+Change out of and back into the directory to enable the .rvmrc file:
 
     cd ..; cd -
 
-Install the required Ruby gems into the wise4-test gemset
+Install the required Ruby gems into the wise4-test gemset:
 
     bundle install
 
-Install executable stubs into a ./bin dir so you don't always have to start a command with: bundle exec
+Install executable stubs into a ./bin dir so you don't always have to start a command with: bundle exec:
 
     bundle install --binstubs
     
@@ -41,9 +43,9 @@ Run all the rspec spec tests:
 
     rake
 
-Currently tests are written in rspec. 
+Currently tests are written in [RSpec](http://relishapp.com/rspec).
 
-Here's an example that uses the [Capaybara DSL](http://rubydoc.info/github/jnicklas/capybara/master/file/README.rdoc#The_DSL}) for interacting with WISE4 via selenium-webdriver:
+Here's an example that uses the [Capaybara DSL](http://rubydoc.info/github/jnicklas/capybara/master/file/README.rdoc#The_DSL}) for interacting with WISE4 via [selenium-webdriver](https://rubygems.org/gems/selenium-webdriver):
 
     describe "Logging in as an admin" do
 
@@ -61,7 +63,7 @@ Here's an example that uses the [Capaybara DSL](http://rubydoc.info/github/jnick
 
     end
 
-Running the tests in the console with rake produces the following results:
+Running the tests in the console with rake produces the following results on my system:
 
     $ rake
     /Users/stephen/.rvm/rubies/ruby-1.9.2-p290/bin/ruby -S bundle exec rspec -fp --color spec/admin_login_spec.rb
