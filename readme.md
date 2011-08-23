@@ -1,10 +1,8 @@
-Simple Integration/Acceptance testing for WISE4
-========
+# Simple Integration/Acceptance testing for WISE4
 
 Uses Ruby and the Ruby gems: capybara, selenium-webdriver, and rspec to create a simple integration/acceptance test structure for WISE4.
 
-Setup
-========
+## Setup
 
 [Install rvm](http://beginrescueend.com/rvm/install/) and then use rvm to install and use ruby 1.9.2.
 
@@ -76,7 +74,11 @@ You can run a single test like this:
 
     rspec spec/admin_login_spec.rb
 
-If you want to debug a test insert the following line in your spec test:
+## Debugging Tests
+
+### Ruby Debug
+
+If you want to debug a test with the console-based Ruby debugger insert the following line in your spec test:
 
     debugger
 
@@ -88,11 +90,17 @@ Your test will execute until the debugger statement at which point the Ruby debu
 
 When you are finished debugging complete the test by entering: `cont`
 
-Documentation/References
-========
+### Save and open html page
+
+Insert this line into a test to save and open a copy of the html page:
+
+    save_and_open_page
+
+## Documentation/References
 
 * [Capybara](https://github.com/jnicklas/capybara)
 * [Capybara documentation](http://rubydoc.info/github/jnicklas/capybara/master/file/README.rdoc)
 * [Capybara Standalone](https://github.com/atmos/capybara-standalone)
 * [RSpec 2.0 documentation](http://relishapp.com/rspec)
 * [selenium-webdriver](https://rubygems.org/gems/selenium-webdriver)
+* [launchy](http://www.copiousfreetime.org/projects/launchy/)

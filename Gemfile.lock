@@ -1,6 +1,7 @@
 GEM
   remote: http://rubygems.org/
   specs:
+    addressable (2.2.6)
     archive-tar-minitar (0.5.2)
     capybara (1.0.1)
       mime-types (>= 1.16)
@@ -15,6 +16,8 @@ GEM
     diff-lcs (1.1.2)
     ffi (1.0.9)
     json_pure (1.5.3)
+    launchy (2.0.5)
+      addressable (~> 2.2.6)
     linecache19 (0.5.12)
       ruby_core_source (>= 0.1.4)
     mime-types (1.16)
@@ -54,5 +57,6 @@ PLATFORMS
 
 DEPENDENCIES
   capybara (~> 1.0.0)
+  launchy (~> 2.0.5)
   rspec (~> 2.6.0)
   ruby-debug19
