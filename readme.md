@@ -38,3 +38,32 @@ Make sure a local wise4 server is running at http://localhost:8080. See [wise4-v
 Run all the rspec spec tests:
 
     rake
+
+Currently tests are written in rspec. 
+
+Here's an example:
+
+    describe "Logging in as an admin" do
+
+      def login(username, password)
+        visit "/webapp/index.html"
+        fill_in 'Username',         :with => username
+        fill_in 'Password',         :with => password
+        find("#signInButton").click
+      end
+
+      it "allows an admin to login" do
+        login('admin', 'pass')
+        find("h2").text.should eql("Welcome to the WISE Administrator Page")
+      end
+
+    end
+
+Running the tests in the console with rake produces the following results:
+
+    $ rake
+    /Users/stephen/.rvm/rubies/ruby-1.9.2-p290/bin/ruby -S bundle exec rspec -fp --color spec/admin_login_spec.rb
+    .
+
+    Finished in 6.91 seconds
+    1 example, 0 failures
