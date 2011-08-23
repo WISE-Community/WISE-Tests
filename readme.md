@@ -45,7 +45,7 @@ Run all the rspec spec tests:
 
 Currently tests are written in rspec. 
 
-Here's an example:
+Here's an example that uses the [Capaybara DSL](http://rubydoc.info/github/jnicklas/capybara/master/file/README.rdoc#The_DSL}) for interacting with WISE4 via selenium-webdriver:
 
     describe "Logging in as an admin" do
 
