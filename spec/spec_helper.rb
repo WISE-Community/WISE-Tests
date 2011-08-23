@@ -2,10 +2,6 @@ require 'rspec'
 require 'capybara'
 require 'capybara/dsl'
 
-Capybara.run_server = false
-Capybara.default_driver = :selenium
-Capybara.app_host = 'http://localhost:8080'
-
 module CapybaraStandalone
   def self.setup
     Capybara.configure do |config|
