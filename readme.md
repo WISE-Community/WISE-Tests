@@ -68,6 +68,22 @@ Running the tests in the console with rake produces the following results:
     Finished in 6.91 seconds
     1 example, 0 failures
 
+You can run a single test like this:
+
+    rspec spec/admin_login_spec.rb
+
+If you want to debug a test insert the following line in your spec test:
+
+    debugger
+
+And start the spec test with debugging turned on with the -d option:
+
+    rspec spec/admin_login_spec.rb -d
+
+Your test will execute until the debugger statement at which point the Ruby debugger will be open in the console and FireFox will be on the screen.
+
+When you are finished debugging complete the test by entering: `cont`
+
 Documentation/References
 ========
 

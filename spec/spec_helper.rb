@@ -1,3 +1,4 @@
+require 'ruby-debug'
 require 'rspec'
 require 'capybara'
 require 'capybara/dsl'
