@@ -33,6 +33,10 @@ Install the required Ruby gems into the wise4-test gemset
 
     bundle install
 
+Install executable stubs into a ./bin dir so you don't always have to start a command with: bundle exec
+
+    bundle install --binstubs
+    
 Make sure a local wise4 server is running at http://localhost:8080. See [wise4-vagrant](https://github.com/concord-consortium/wise4-vagrant) for one easy solution.
 
 Run all the rspec spec tests:
