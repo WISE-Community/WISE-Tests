@@ -3,7 +3,7 @@ Feature: Admin Login
   As a person with admin credentials
   I want to be able to login using those credentials
 
-  Scenario: Search for cucumber
+  Scenario: Admin Login
     Given I am on the home page
     And I have entered "admin" into the "Username" field
     And I have entered "pass" into the "Password" field
