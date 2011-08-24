@@ -115,5 +115,6 @@ Insert this line into a test to save and open a copy of the html page:
 * [Cucumber](https://github.com/cucumber/cucumber)
 * [Cucumber documentation](https://github.com/cucumber/cucumber/wiki/)
 * [Cucumber site](http://cukes.info/)
+* [Cucumber Standalone](http://github.com/thuss/standalone-cucumber)
 * [selenium-webdriver](https://rubygems.org/gems/selenium-webdriver)
 * [launchy](http://www.copiousfreetime.org/projects/launchy/)
