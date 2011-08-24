@@ -24,3 +24,6 @@ RSpec.configure do |config|
     Capybara.use_default_driver
   end
 end
+
+helpers = Dir.glob(File.join(File.expand_path('../support', __FILE__), "*.rb"))
+helpers.each { |f| require(f) }
