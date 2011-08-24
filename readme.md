@@ -84,7 +84,7 @@ If you want to debug a test with the console-based Ruby debugger insert the foll
 
 And start the spec test with debugging turned on with the -d option:
 
-    rspec spec/admin_login_spec.rb -d
+    rspec spec/admin_spec.rb -d
 
 Your test will execute until the debugger statement at which point the Ruby debugger will be open in the console and FireFox will be on the screen.
 
