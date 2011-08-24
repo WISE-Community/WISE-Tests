@@ -1,6 +1,6 @@
 # Simple Integration/Acceptance testing for WISE4
 
-Uses Ruby and the Ruby gems: [Capybara](http://rubydoc.info/github/jnicklas/capybara/master/file/README.rdoc), [RSpec](http://relishapp.com/rspec), and [selenium-webdriver](https://rubygems.org/gems/selenium-webdriver) to create a simple integration/acceptance test system for WISE4.
+Uses Ruby and the Ruby gems: [Capybara](http://rubydoc.info/github/jnicklas/capybara/master/file/README.rdoc), [RSpec](http://relishapp.com/rspec), [Cucumber](http://cukes.info/) and [selenium-webdriver](https://rubygems.org/gems/selenium-webdriver) to create a simple integration/acceptance test system for WISE4.
 
 The tests expect an instance of WISE4 to be running at http://localhost:8080
 
@@ -36,14 +36,16 @@ Install the required Ruby gems into the wise4-test gemset:
 Install executable stubs into a ./bin dir so you don't always have to start a command with: bundle exec:
 
     bundle install --binstubs
-    
+
+## Running the RSpec spec tests
+
 Make sure a local wise4 server is running at http://localhost:8080. See [wise4-vagrant](https://github.com/concord-consortium/wise4-vagrant) for one easy solution.
 
-Run all the rspec spec tests:
+Run all the [RSpec](http://relishapp.com/rspec) spec tests:
 
-    rake
+    rake spec
 
-Currently tests are written in [RSpec](http://relishapp.com/rspec).
+The RSpec spec tests are in the `spec/` directory.
 
 Here's an example that uses the [Capaybara DSL](http://rubydoc.info/github/jnicklas/capybara/master/file/README.rdoc#The_DSL}) for interacting with WISE4 via [selenium-webdriver](https://rubygems.org/gems/selenium-webdriver):
 
@@ -74,6 +76,14 @@ You can run a single file of spec tests like this:
 
     rspec spec/admin_spec.rb
 
+## Running the Cucumber feature tests
+
+Run all the [Cucumber](https://github.com/cucumber/cucumber/wiki/) feature tests:
+
+    rake features
+
+The Cucumber features tests are in the `features/` directory.
+
 ## Debugging Tests
 
 ### Ruby Debug
@@ -102,5 +112,8 @@ Insert this line into a test to save and open a copy of the html page:
 * [Capybara documentation](http://rubydoc.info/github/jnicklas/capybara/master/file/README.rdoc)
 * [Capybara Standalone](https://github.com/atmos/capybara-standalone)
 * [RSpec 2.0 documentation](http://relishapp.com/rspec)
+* [Cucumber](https://github.com/cucumber/cucumber)
+* [Cucumber documentation](https://github.com/cucumber/cucumber/wiki/)
+* [Cucumber site](http://cukes.info/)
 * [selenium-webdriver](https://rubygems.org/gems/selenium-webdriver)
 * [launchy](http://www.copiousfreetime.org/projects/launchy/)
