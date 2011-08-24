@@ -14,7 +14,7 @@ The tests expect an instance of WISE4 to be running at http://localhost:8080
 Install a few globally useful gems for Ruby 1.9.2
 
     rvm gemset use global
-    gem install bundler, rake, ruby-debug19
+    gem install bundler rake ruby-debug19
 
 Clone the wise4-test repository:
 
