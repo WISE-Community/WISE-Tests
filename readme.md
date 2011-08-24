@@ -21,11 +21,11 @@ Clone the wise4-test repository:
     git clone git://github.com/concord-consortium/wise4-test.git
     cd wise4-test
 
-Create an .rvmrc file to use ruby 1.9.2 and a wise4-test gemset whenever you change to this wise4-test directory:
+Create an `.rvmrc` file to use ruby 1.9.2 and a wise4-test gemset whenever you change to this wise4-test directory:
 
     echo 'rvm use 1.9.2@wise4-test --create' > .rvmrc
 
-Change out of and back into the directory to enable the .rvmrc file:
+Change out of and back into the directory to enable the `.rvmrc` file:
 
     cd ..; cd -
 
@@ -33,7 +33,7 @@ Install the required Ruby gems into the wise4-test gemset:
 
     bundle install
 
-Install executable stubs into a ./bin dir so you don't always have to start a command with: bundle exec:
+Install executable stubs into a `./bin` dir so you don't always have to start a command with: `bundle exec`:
 
     bundle install --binstubs
 
