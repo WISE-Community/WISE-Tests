@@ -1,6 +1,6 @@
 # Simple Integration/Acceptance testing for WISE4
 
-Uses Ruby and the Ruby gems: [capybara](http://rubydoc.info/github/jnicklas/capybara/master/file/README.rdoc), [RSpec](http://relishapp.com/rspec), and [selenium-webdriver](https://rubygems.org/gems/selenium-webdriver) to create a simple integration/acceptance test system for WISE4.
+Uses Ruby and the Ruby gems: [Capybara](http://rubydoc.info/github/jnicklas/capybara/master/file/README.rdoc), [RSpec](http://relishapp.com/rspec), and [selenium-webdriver](https://rubygems.org/gems/selenium-webdriver) to create a simple integration/acceptance test system for WISE4.
 
 The tests expect an instance of WISE4 to be running at http://localhost:8080
 
@@ -47,8 +47,7 @@ Currently tests are written in [RSpec](http://relishapp.com/rspec).
 
 Here's an example that uses the [Capaybara DSL](http://rubydoc.info/github/jnicklas/capybara/master/file/README.rdoc#The_DSL}) for interacting with WISE4 via [selenium-webdriver](https://rubygems.org/gems/selenium-webdriver):
 
-    describe "Logging in as an admin" do
-
+    describe "An admin user can" do
       def login(username, password)
         visit "/webapp/index.html"
         fill_in 'Username',         :with => username
@@ -56,14 +55,13 @@ Here's an example that uses the [Capaybara DSL](http://rubydoc.info/github/jnick
         find("#signInButton").click
       end
 
-      it "allows an admin to login" do
+      it "login" do
         login('admin', 'pass')
         find("h2").text.should eql("Welcome to the WISE Administrator Page")
       end
-
     end
 
-Running the tests in the console with rake produces the following results on my system:
+Running just this tests in the console with rake produces the following results on my system:
 
     $ rake
     /Users/stephen/.rvm/rubies/ruby-1.9.2-p290/bin/ruby -S bundle exec rspec -fp --color spec/admin_login_spec.rb
@@ -72,9 +70,9 @@ Running the tests in the console with rake produces the following results on my 
     Finished in 6.91 seconds
     1 example, 0 failures
 
-You can run a single test like this:
+You can run a single file of spec tests like this:
 
-    rspec spec/admin_login_spec.rb
+    rspec spec/admin_spec.rb
 
 ## Debugging Tests
 
