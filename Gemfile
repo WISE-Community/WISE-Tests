@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem "capybara", "~> 1.0.0"
+gem 'capybara', :git => 'git://github.com/jnicklas/capybara.git'
 gem "rspec", "~> 2.6.0"
 gem "cucumber", "~> 1.0.2"
 
