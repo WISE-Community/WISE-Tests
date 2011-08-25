@@ -11,6 +11,10 @@ The tests expect an instance of WISE4 to be running at http://localhost:8080
     rvm install 1.9.2
     rvm use 1.9.2
 
+Update the installed version of RubyGems that comes with Ruby v1.9.2. On my system this updated RubyGems from v1.6.2 to 1.8.9.
+
+    gem update --system
+
 Install a few globally useful gems for Ruby 1.9.2
 
     rvm gemset use global
@@ -36,6 +40,33 @@ Install the required Ruby gems into the wise4-test gemset:
 Install executable stubs into a `./bin` dir so you don't always have to start a command with: `bundle exec`:
 
     bundle install --binstubs
+
+## Working with WISE4 running in a Vagrant/VirtualBOx VM instance
+
+If you are using these tests scripts with a WISE4 instance running in a Vagrant/VirtualBox instance it can be helpful to be able to run remote commands on the VM instance using ssh. 
+
+You need two specific pieces of data.
+
+*The ip address the vagrant/virtual-box instance is running on.*
+
+You can find this in the Vagrantfile itself. Here's an example:
+
+    config.vm.network "33.33.33.10"
+
+*The path to the vagrant ssh identity file.* 
+
+This is located at the path: `files/vagrant` in the directory for the installed vagrant gem.
+
+If the vagrant gem is accessible from the RVM/Ruby gemset used by wise4-test then you can display the full path to the vagarnt identity file with this command:
+
+    ruby -e "puts File.join(Gem::Specification.find_by_name('vagrant').gem_dir, 'files', 'vagrant')"
+    => /Users/stephen/.rvm/gems/ruby-1.9.2-p290/gems/vagrant-0.8.2/files/vagrant
+
+With these two items of information you can use ssh to run scripts on a running vagrant/virtual-box instance.
+
+For example this command runs the command: `ls -l` on my wise4-vagrant instance and displays the results in the console.
+
+    ssh -l vagrant 33.33.33.10  -i /Users/stephen/.rvm/gems/ruby-1.9.2-p290/gems/vagrant-0.8.2/keys/vagrant 'ls -l'
 
 ## Running the RSpec spec tests
 
