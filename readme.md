@@ -41,19 +41,19 @@ Install executable stubs into a `./bin` dir so you don't always have to start a 
 
     bundle install --binstubs
 
-## Working with WISE4 running in a Vagrant/VirtualBOx VM instance
+## Working with WISE4 running in a Vagrant/VirtualBox VM instance
 
-If you are using these tests scripts with a WISE4 instance running in a Vagrant/VirtualBox instance it can be helpful to be able to run remote commands on the VM instance using ssh. 
+If you are using these tests scripts with a WISE4 instance running in a Vagrant/VirtualBox instance it can be helpful to be able to run remote commands on the VM instance using ssh. For example a command to reset the databases to the new default state and restart tomcat.
 
 You need two specific pieces of data.
 
-*The ip address the vagrant/virtual-box instance is running on.*
+**The ip address the vagrant/virtual-box instance is running on.**
 
 You can find this in the Vagrantfile itself. Here's an example:
 
     config.vm.network "33.33.33.10"
 
-*The path to the vagrant ssh identity file.* 
+**The path to the vagrant ssh identity file.**
 
 This is located at the path: `files/vagrant` in the directory for the installed vagrant gem.
 
@@ -64,9 +64,9 @@ If the vagrant gem is accessible from the RVM/Ruby gemset used by wise4-test the
 
 With these two items of information you can use ssh to run scripts on a running vagrant/virtual-box instance.
 
-For example this command runs the command: `ls -l` on my wise4-vagrant instance and displays the results in the console.
+For example this command runs the command: `/opt/ruby/bin/ruby reset_wise4_databases.rb` on my wise4-vagrant instance in the `/home/vagrant` directory and displays the results in the console.
 
-    ssh -l vagrant 33.33.33.10  -i /Users/stephen/.rvm/gems/ruby-1.9.2-p290/gems/vagrant-0.8.2/keys/vagrant 'ls -l'
+    ssh -l vagrant 33.33.33.10  -i /Users/stephen/.rvm/gems/ruby-1.9.2-p290/gems/vagrant-0.8.2/keys/vagrant '/opt/ruby/bin/ruby reset_wise4_databases.rb'
 
 ## Running the RSpec spec tests
 
