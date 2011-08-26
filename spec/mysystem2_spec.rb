@@ -4,7 +4,7 @@ describe("A MySystem2 step can") do
   it("be added to a project") do
     admin_login
     # make sure we are logged in
-    find("h2").text.should eql("Welcome to the WISE Administrator Page")
+    find(".panelHeader").text.should eql("WISE Administrator Tools")
     
     project_id = create_project("Auto Test Project")
     
