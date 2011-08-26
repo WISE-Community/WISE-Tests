@@ -12,12 +12,12 @@ describe "A logged in admin user can" do
   end
   
   it "view the Admin Home Page" do
-    find("h2").text.should eql("Welcome to the WISE Administrator Page")
+    find(".panelHeader").text.should eql("WISE Administrator Tools")
   end
 
   it "view a Teacher Home Page" do
-    click_link 'Teacher Home Page'
-    find("#teacherInterfaceHeader").text.should eql("teacher dashboard")
+    click_link 'Teacher Home'
+    find('.pageTitle').text.should eql("TEACHER HOME")
   end
 
   describe "perform User Management from The Admin Home Page and" do

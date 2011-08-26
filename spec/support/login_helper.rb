@@ -1,8 +1,8 @@
 
 def login(username, password)
   visit "/webapp/index.html"
-  fill_in 'Username',         :with => username
-  fill_in 'Password',         :with => password
+  fill_in 'j_username', :with => username
+  fill_in 'j_password', :with => password
   find("#signInButton").click
 end
 
