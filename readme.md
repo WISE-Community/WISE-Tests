@@ -119,7 +119,7 @@ The Cucumber features tests are in the `features/` directory.
 
 Capybara has an extensive DSL for interrogating web pages: [Capybara DSL](http://rubydoc.info/github/jnicklas/capybara/master/file/README.rdoc#The_DSL)
 
-- [Capybara::Node::Actions](http://rubydoc.info/github/jnicklas/capybara/master/Capybara/Node/Actions)
+### [Capybara::Node::Actions](http://rubydoc.info/github/jnicklas/capybara/master/Capybara/Node/Actions)**
 
 Capybara uses css selectors by default bit also has a full set of xpath selectors. [Capybara: XPath, CSS and selectors](http://rubydoc.info/github/jnicklas/capybara/master/file/README.rdoc#XPath__CSS_and_selectors)
 
@@ -146,7 +146,7 @@ Find a check box and mark uncheck it.
 - `unselect(value, options = {})`
 Find a select box on the page and unselect a particular option from it.
 
-- [Capybara::Node::Matchers](http://rubydoc.info/github/jnicklas/capybara/master/Capybara/Node/Matchers)
+### [Capybara::Node::Matchers](http://rubydoc.info/github/jnicklas/capybara/master/Capybara/Node/Matchers)
 
 Capybara Matchers all return booleans:
 
@@ -195,7 +195,7 @@ Checks if the page or current node has a radio button or checkbox with the given
 - `has_xpath?(path, options = {})`
 Checks if a given XPath expression is on the page or current node.
 
-- [Capybara::Node::Finders](http://rubydoc.info/github/jnicklas/capybara/master/Capybara/Node/Finders)
+### [Capybara::Node::Finders](http://rubydoc.info/github/jnicklas/capybara/master/Capybara/Node/Finders)
 
 The following Capybara Finders all return Capybara::Element objects:
 
