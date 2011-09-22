@@ -20,14 +20,14 @@ Install a few globally useful gems for Ruby 1.9.2
     rvm gemset use global
     gem install bundler rake ruby-debug19
 
-Clone the WISE-Test repository:
+Clone the WISE-Tests repository:
 
     git clone git://github.com/WISE-Community/WISE-Tests.git
     cd WISE-Tests
 
 Create an `.rvmrc` file to use ruby 1.9.2 and a wise4-test gemset whenever you change to this wise4-test directory:
 
-    echo 'rvm use 1.9.2@WISE-Test --create' > .rvmrc
+    echo 'rvm use 1.9.2@WISE-Tests --create' > .rvmrc
 
 Change out of and back into the directory to enable the `.rvmrc` file:
 
