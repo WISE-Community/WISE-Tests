@@ -23,7 +23,7 @@ Install a few globally useful gems for Ruby 1.9.2
 Clone the WISE-Test repository:
 
     git clone git://github.com/WISE-Community/WISE-Tests.git
-    cd WISE-Test
+    cd WISE-Tests
 
 Create an `.rvmrc` file to use ruby 1.9.2 and a wise4-test gemset whenever you change to this wise4-test directory:
 
