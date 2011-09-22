@@ -1,3 +1,12 @@
+#file generated on Macs
+.DS_Store
+
+#backup files
+*~
+
+#file created when testing with Chrome
+chromedriver.log
+
 .rvmrc
 .bundle
 /bin
