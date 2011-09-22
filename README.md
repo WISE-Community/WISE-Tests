@@ -180,6 +180,26 @@ Your test will execute until the debugger statement at which point the Ruby debu
 When you are finished debugging complete the test by entering: `cont`
 
 
+## Testing with Chrome
+
+Download the [chromedriver](http://code.google.com/p/chromium/downloads/list) for your system
+
+Unzip the chromedriver and put it in /usr/local/bin
+
+Add this to your features/support/env.rb file
+
+    Capybara.register_driver :selenium do |app|
+      Capybara::Selenium::Driver.new(app, :browser => :chrome)
+    end
+
+
+## Troubleshooting
+
+### bundle install complains about nokogiri
+
+Visit the [Installing Nokogiri](http://nokogiri.org/tutorials/installing_nokogiri.html) page and follow the directions
+
+
 ## Documentation/References
 
 * [Capybara](https://github.com/jnicklas/capybara)
