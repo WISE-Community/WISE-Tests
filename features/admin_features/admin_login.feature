@@ -7,5 +7,5 @@ Feature: Admin Login
     Given I am on the home page
     And I have entered "admin" into the "j_username" field
     And I have entered "pass" into the "j_password" field
-    When I click the "Sign In" button
+    When I click on the "Sign In" button
     Then I should see "WISE Administrator Tools"

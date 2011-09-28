@@ -10,7 +10,7 @@ When /^I click the Sign In button$/ do
   find("#signInButton").click
 end
 
-When /^I click the "([^"]*)" button$/ do |button_text|
+When /^I click on the "([^"]*)" button$/ do |button_text|
   click_button button_text
 end
 
