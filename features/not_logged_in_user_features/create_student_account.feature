@@ -7,7 +7,7 @@ Feature: Create Student Account
     When I click on the "Student Account" link
     Then I should see "Student Registration"    
     
-  Scenario: Fill in information correctly
+  Scenario: Fill in all required information correctly
     Given I am on the Student Registration page
     And I have entered "a" into the "firstname" field
     And I have entered "a" into the "lastname" field
@@ -23,4 +23,5 @@ Feature: Create Student Account
     And I choose "1" from the "runCode_part2" dropdown    
     When I click on the "Create Account" link
     Then I should see "Account Created!"
+    And I should see "Your new Username is"
     
