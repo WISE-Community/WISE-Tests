@@ -4,8 +4,5 @@ Feature: Admin Login
   I want to be able to login using those credentials
 
   Scenario: Admin Login
-    Given I am on the home page
-    And I have entered "admin" into the "j_username" field
-    And I have entered "pass" into the "j_password" field
-    When I click on the "Sign In" button
+    Given I am logged in as an admin
     Then I should see "WISE Administrator Tools"

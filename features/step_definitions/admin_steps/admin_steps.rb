@@ -1,20 +1,5 @@
-Given /^I am on the home page$/ do
-  visit "/webapp/index.html"
-end
+#Given
 
-Given /^I have entered "([^"]*)" into the "([^"]*)" field$/ do |text, field|
-  fill_in field, :with => text
+Given /^I am logged in as an admin$/ do
+  login($adminLogin, $adminPassword);
 end
-
-When /^I click the Sign In button$/ do
-  find("#signInButton").click
-end
-
-When /^I click on the "([^"]*)" button$/ do |button_text|
-  click_button button_text
-end
-
-Then /^I should see "([^"]*)"$/ do |text|
-  page.should have_content(text)
-end
-

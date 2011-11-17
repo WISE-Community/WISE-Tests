@@ -1,18 +1,9 @@
-teacherLogin = "aa"
-teacherPassword = "a"
 
-def login(username, password)
-  visit "/webapp/index.html"
-  fill_in 'j_username', :with => username
-  fill_in 'j_password', :with => password
-  find("#signInButton").click
-  page.should have_content("Teacher Home")
-end
 
 #Given
 
 Given /^I am logged in as a teacher$/ do
-  login(teacherLogin, teacherPassword);
+  login($teacherLogin, $teacherPassword);
 end
 
 #When
