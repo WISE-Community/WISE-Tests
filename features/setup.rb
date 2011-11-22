@@ -7,3 +7,6 @@ $adminPassword = "pass"
 
 $teacherLogin = "aa"
 $teacherPassword = "a"
+
+$studentLogin = "bb11"
+$studentPassword = "a"

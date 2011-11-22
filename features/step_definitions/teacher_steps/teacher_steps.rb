@@ -4,13 +4,10 @@
 
 Given /^I am logged in as a teacher$/ do
   login($teacherLogin, $teacherPassword);
+  page.should have_content("Teacher Home")
 end
 
 #When
-
-When /^I click on the "([^"]*)" link$/ do |link|
-  find('a', :text => link).click
-end
 
 When /^I click on the "([^"]*)" button in the Authoring Tool$/ do |buttonText|
   within_frame("authorfrm") do
