@@ -34,3 +34,12 @@ Then /^I should see project "([^"]*)" loaded in the Authoring Tool$/ do |project
     find_by_id("projectID").has_content?(projectId)
   end
 end
+
+Then /^I should see the preview window open$/ do
+  within_window(page.driver.browser.window_handles.last) do
+    within_frame("topifrm") do 
+      page.should have_selector('#contentDiv')
+  	end
+  end
+end
+
