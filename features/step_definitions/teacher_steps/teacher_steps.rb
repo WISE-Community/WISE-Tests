@@ -27,7 +27,7 @@ When /^I click on the "([^"]*)" link and say OK to the warning$/ do |link|
   find('a', :text => link).click
 end
 
-When /^I click on the "([^"]*)" "([^"]*)" link$/ do |gradeBy, revisions|
+When /^I click on the "([^"]*)" "([^"]*)" Grading Tool link$/ do |gradeBy, revisions|
   gradingType = "";
   getRevisions = "";
 
@@ -75,6 +75,100 @@ When /^I click on the "([^"]*)" "([^"]*)" link$/ do |gradeBy, revisions|
   end
 end
 
+When /^I see "([^"]*)" in the Grading Tool$/ do |text|
+  within_frame("gradingIfrm") do
+    within_frame("topifrm") do
+      page.should have_content(text)
+    end
+  end
+end
+
+When /^period "([^"]*)" is selected$/ do |period|
+  within_frame("gradingIfrm") do
+    within_frame("topifrm") do
+      if period == "All Periods"
+        periodId = "all"
+      else
+        periodId = period.downcase.gsub(/ /, '')
+      end
+      page.should have_css('#' + periodId + '.checked')
+    end
+  end
+end
+
+When /^I click on period "([^"]*)"$/ do |period|
+  within_frame("gradingIfrm") do
+    within_frame("topifrm") do
+      if period == "All Periods"
+        periodId = "all"
+      else
+        periodId = period.downcase.gsub(/ /, '')
+      end
+      find_by_id(periodId).click
+    end
+  end
+end
+
+When /^I click on Step "([^"]*)" in the Grading Tool$/ do |stepPosition|
+  within_frame("gradingIfrm") do
+    within_frame("topifrm") do
+      #click_link(stepPosition)
+      find('a', :text => stepPosition).click
+    end
+  end
+end
+
+#TODO: make this more precise
+When /^I give a student a score of "([^"]*)" in the Grading Tool$/ do |score|
+  within_frame("gradingIfrm") do
+    within_frame("topifrm") do
+      elements = page.all('input', :type => 'text');
+      
+      elements.each { |element|
+      	if element[:type] == 'text' and element[:disabled] == 'false'
+      	  element.set(score)
+      	  break
+      	end
+      }
+    end
+  end
+end
+
+When /^I give a student a comment of "([^"]*)" in the Grading Tool$/ do |comment|
+  within_frame("gradingIfrm") do
+    within_frame("topifrm") do
+      elements = page.all('textarea');
+      
+      elements.each { |element|
+      	if element[:disabled] == 'false'
+      	  element.set(comment)
+      	  break
+      	end
+      }
+    end
+  end
+end
+
+When /^I click on the "([^"]*)" link in the Grading Tool$/ do |link|
+  within_frame("gradingIfrm") do
+    within_frame("topifrm") do
+      page.find('a', :text => link).click
+    end
+  end
+end
+
+When /^I close the Grading Tool$/ do
+  page.find('span', :text => 'close').click
+end
+
+When /^I click on the student "([^"]*)" in the Grading Tool$/ do |studentLogin|
+  within_frame("gradingIfrm") do
+    within_frame("topifrm") do
+      page.find('a', :text => studentLogin).click
+    end
+  end
+end
+
 #Then
 
 Then /^I should see "([^"]*)" in the Authoring Tool$/ do |text|
@@ -116,5 +210,56 @@ Then /^I should see "([^"]*)" in the Grading Tool$/ do |text|
     within_frame("topifrm") do
       page.should have_content(text)
     end
+  end
+end
+
+Then /^period "([^"]*)" should be selected$/ do |period|
+  within_frame("gradingIfrm") do
+    within_frame("topifrm") do
+      if period == "All Periods"
+        periodId = "all"
+      else
+        periodId = period.downcase.gsub(/ /, '')
+      end
+      page.should have_css('#' + periodId + '.checked')
+    end
+  end
+end
+
+#TODO: make this more precise
+Then /^I should see a student with a score of "([^"]*)" in the Grading Tool$/ do |score|
+  within_frame("gradingIfrm") do
+    within_frame("topifrm") do
+      elements = page.all('input', :type => 'text');
+      
+      elements.each { |element|
+      	if element[:type] == 'text' and element[:disabled] == 'false'
+      	  element.value.should == score
+      	  break
+      	end
+      }
+    end
+  end
+end
+
+#TODO: make this more precise
+Then /^I should see a student with a comment of "([^"]*)" in the Grading Tool$/ do |comment|
+  within_frame("gradingIfrm") do
+    within_frame("topifrm") do
+      elements = page.all('textarea');
+      
+      elements.each { |element|
+      	if element[:disabled] == 'false'
+      	  element.value.should == comment
+      	  break
+      	end
+      }
+    end
+  end
+end
+
+Then /^I should see the Premade Comments window open$/ do
+  within_window(page.driver.browser.window_handles.last) do
+    page.should have_content("Global Premade Comment List")
   end
 end

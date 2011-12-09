@@ -18,26 +18,6 @@ Feature: Access teacher popups
     When I click on the "Edit Run Settings" link
     Then in the "Edit Run Settings" iframe I should see "Enable Idea Manager"
 
-  Scenario: Access the Grade by Step Latest Work page
-    Given I am logged in as a teacher
-    When I click on the "Grade by Step" "Latest Work" link
-    Then I should see "Select a step below to start grading" in the Grading Tool
-    
-  Scenario: Access the Grade by Step All Revisions page
-    Given I am logged in as a teacher
-    When I click on the "Grade by Step" "All Revisions" link
-    Then I should see "Select a step below to start grading" in the Grading Tool
-    
-  Scenario: Access the Grade by Step Latest Work page
-    Given I am logged in as a teacher
-    When I click on the "Grade by Team" "Latest Work" link
-    Then I should see "Select a student team below to start grading" in the Grading Tool
-    
-  Scenario: Access the Grade by Step All Revisions page
-    Given I am logged in as a teacher
-    When I click on the "Grade by Team" "All Revisions" link
-    Then I should see "Select a student team below to start grading" in the Grading Tool
-    
   Scenario: Access the Researcher Tools page
     Given I am logged in as a teacher
     When I click on the "Researcher Tools" link
