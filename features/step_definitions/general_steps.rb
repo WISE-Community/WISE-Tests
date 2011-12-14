@@ -76,6 +76,10 @@ When /^I click on the "([^"]*)" button in the "([^"]*)" frame$/ do |text, frameI
   end
 end
 
+When /^I enter "([^"]*)" into the "([^"]*)" field$/ do |text, elementId|
+  fill_in elementId, :with => text
+end
+
 #Then
 
 Then /^I should see "([^"]*)"$/ do |text|
