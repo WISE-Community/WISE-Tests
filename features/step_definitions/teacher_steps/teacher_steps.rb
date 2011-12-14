@@ -372,6 +372,24 @@ When /^I click edit on the first step in the Authoring Tool$/ do
   end
 end
 
+When /^I count the number of projects with the title "([^"]*)"$/ do |projectTitle|
+  #get all the project title input elements
+  projectTitleInputs = page.all('.projectTitle')
+  projectCount = 0
+  
+  #loop through all the title elements
+  projectTitleInputs.each { |titleInput|
+    #check if the title matches
+    if titleInput.text == projectTitle
+      #it matches so we will increment our counter
+      projectCount += 1
+    end
+  }
+  
+  #remember the count so we can reference it later
+  $tempProjectCount = projectCount
+end
+
 #############
 ### Then ####
 #############
@@ -595,4 +613,23 @@ Then /^I should see the previously saved content in the preview frame in the Aut
       should have_content($tempInputValue);
     end
   end
+end
+
+Then /^I should see the number of projects with the title "([^"]*)" increase$/ do |projectTitle|
+  #get all the project title inputs
+  projectTitleInputs = page.all('.projectTitle')
+  
+  projectCount = 0
+  
+  #loop through all the title elements
+  projectTitleInputs.each { |titleInput|
+    #check if the title matches
+    if titleInput.text == projectTitle
+      #it matches so we will increment our counter
+      projectCount += 1
+    end
+  }
+  
+  #the count should have been increased by 1
+  projectCount.should == ($tempProjectCount + 1)
 end
