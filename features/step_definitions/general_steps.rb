@@ -18,15 +18,15 @@ end
 #When
 
 When /^I log in as a student$/ do
-  login($studentLogin, $studentPassword);
+  login($studentLogin1, $studentPassword1)
 end
 
 When /^I log in as a teacher$/ do
-  login($teacherLogin, $teacherPassword);
+  login($teacherLogin1, $teacherPassword1)
 end
 
 When /^I log in as an admin$/ do
-  login($adminLogin, $adminPassword);
+  login($adminLogin, $adminPassword)
 end
 
 

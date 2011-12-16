@@ -2,7 +2,7 @@
 #Given
 
 Given /^I am logged in as a student$/ do
-  login($studentLogin, $studentPassword);
+  login($studentLogin1, $studentPassword1)
   page.should have_content("Student Home")
 end
 

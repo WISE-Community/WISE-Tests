@@ -76,9 +76,12 @@ def createTestActivity()
     
   #create the activity name using Activity + time in milliseconds
   activityName = 'Activity ' + time.to_i.to_s
-    
+  
+  #set the activity name
   find_by_id('createSequenceInput').set(activityName)
   click_button('Submit')
+  
+  #add the activity to the beginning of the project
   find('.master').click
     
   #get the id of the first activity
@@ -106,6 +109,7 @@ def createTestStep(stepType)
   #create the step name using Step + time in milliseconds
   stepName = 'Step ' + time.to_i.to_s
     
+  #set the step name
   find_by_id('createNodeTitle').set(stepName)
     
   #get all the option elements
@@ -190,61 +194,82 @@ def createTestRun(projectId)
   click_button('Next')
   page.should have_content('Step 5 of 5')
   click_button('Done')
+
+  #get the project id
+  projectIdTdText = find('#projectRunConfirmTable').all('td')[3].text
+  projectId = /(\d*).*/.match(projectIdTdText)[1]
+
+  #get the run id
+  runIdTdText = find('#projectRunConfirmTable').all('td')[5].text
+  runId = /(\d*).*/.match(runIdTdText)[1]
   
   #get the run code
   runCode = find('#projectRunConfirmTable').find('div').text
   
-  return runCode
+  return projectId, runId, runCode
 end
 
 #Given
 
-@javascript
-Given /^I run the setup$/ do
-  mySetup = File.new('features/setup_variables.rb', 'w')
-  
+Given /^I create the setup_variables.rb file$/ do
+  $mySetup = File.new('features/setup_variables.rb', 'w')
+end
+
+And /^I create the admin account$/ do
   #login and password for the admin account
-  mySetup.puts '$adminLogin = "admin"'
-  mySetup.puts '$adminPassword = "pass"'
-  puts 'Created Admin'
-  
+  $mySetup.puts '$adminLogin = "admin"'
+  $mySetup.puts '$adminPassword = "pass"'
+end
+
+And /^I create the teacher 1 account$/ do
   #create teacher account 1
-  teacherLogin1, teacherPassword1 = createTestTeacherAccount()
-  mySetup.puts '$teacherLogin1 = "' + teacherLogin1 + '"'
-  mySetup.puts '$teacherPassword1 = "' + teacherPassword1 + '"'
-  puts 'Created Teacher 1'
-  
+  $teacherLogin1, $teacherPassword1 = createTestTeacherAccount()
+  $mySetup.puts '$teacherLogin1 = "' + $teacherLogin1 + '"'
+  $mySetup.puts '$teacherPassword1 = "' + $teacherPassword1 + '"'
+end
+
+And /^I create the teacher 2 account$/ do
   #create teacher account 2
-  teacherLogin2, teacherPassword2 = createTestTeacherAccount()
-  mySetup.puts '$teacherLogin2 = "' + teacherLogin2 + '"'
-  mySetup.puts '$teacherPassword2 = "' + teacherPassword2 + '"'
-  puts 'Created Teacher 2'
-  
+  $teacherLogin2, $teacherPassword2 = createTestTeacherAccount()
+  $mySetup.puts '$teacherLogin2 = "' + $teacherLogin2 + '"'
+  $mySetup.puts '$teacherPassword2 = "' + $teacherPassword2 + '"'
+end
+
+And /^I create the project$/ do
   #create project 1 with teacher account 1
-  projectId = createTestProject(teacherLogin1, teacherPassword1)
-  mySetup.puts '$projectId = "' + projectId + '"'
-  puts 'Created Project'
-  
+  $parentProjectId = createTestProject($teacherLogin1, $teacherPassword1)
+  $mySetup.puts '$parentProjectId = "' + $parentProjectId + '"'
+end
+
+And /^I create the run$/ do
   #create run 1 with project 1 with teacher account 1
-  runCode = createTestRun(projectId)
-  mySetup.puts '$runCode = "' + runCode + '"'
-  puts 'Created Run'
-  
+  $projectId, $runId, $runCode = createTestRun($parentProjectId)
+  $mySetup.puts '$projectId = "' + $projectId + '"'
+  $mySetup.puts '$runId = "' + $runId + '"'
+  $mySetup.puts '$runCode = "' + $runCode + '"'
+end
+
+And /^I create the student 1 account$/ do
   #create student account 1 with run 1 period 1
-  studentLogin1, studentPassword1 = createTestStudentAccount(runCode, '1')
-  mySetup.puts '$studentLogin1 = "' + studentLogin1 + '"'
-  mySetup.puts '$studentPassword1 = "' + studentPassword1 + '"'
-  puts 'Created Student 1'
-  
+  $studentLogin1, $studentPassword1 = createTestStudentAccount($runCode, '1')
+  $mySetup.puts '$studentLogin1 = "' + $studentLogin1 + '"'
+  $mySetup.puts '$studentPassword1 = "' + $studentPassword1 + '"'
+end
+
+And /^I create the student 2 account$/ do
   #create student account 2 with run 1 period 1
-  studentLogin2, studentPassword2 = createTestStudentAccount(runCode, '1')
-  mySetup.puts '$studentLogin2 = "' + studentLogin2 + '"'
-  mySetup.puts '$studentPassword2 = "' + studentPassword2 + '"'
-  puts 'Created Student 2'
-  
+  $studentLogin2, $studentPassword2 = createTestStudentAccount($runCode, '1')
+  $mySetup.puts '$studentLogin2 = "' + $studentLogin2 + '"'
+  $mySetup.puts '$studentPassword2 = "' + $studentPassword2 + '"'
+end
+
+And /^I create the student 3 account$/ do
   #create student account 3 with run 1 period 2
-  studentLogin3, studentPassword3 = createTestStudentAccount(runCode, '2')
-  mySetup.puts '$studentLogin3 = "' + studentLogin3 + '"'
-  mySetup.puts '$studentPassword3 = "' + studentPassword3 + '"'
-  puts 'Created Student 3'
+  $studentLogin3, $studentPassword3 = createTestStudentAccount($runCode, '2')
+  $mySetup.puts '$studentLogin3 = "' + $studentLogin3 + '"'
+  $mySetup.puts '$studentPassword3 = "' + $studentPassword3 + '"'
+end
+
+Then /^I am done with the setup$/ do
+
 end

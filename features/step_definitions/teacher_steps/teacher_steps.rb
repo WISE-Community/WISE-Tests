@@ -4,7 +4,7 @@
 #############
 
 Given /^I am logged in as a teacher$/ do
-  login($teacherLogin, $teacherPassword);
+  login($teacherLogin1, $teacherPassword1);
   page.should have_content("Teacher Home")
 end
 
