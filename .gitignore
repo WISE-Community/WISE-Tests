@@ -12,3 +12,4 @@ chromedriver.log
 /bin
 capybara-*.html
 *.orig
+setup_variables.rb

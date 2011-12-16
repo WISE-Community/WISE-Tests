@@ -10,8 +10,11 @@ arg1=$1
 testPath=""
 
 if [ -z "$arg1" ]; then
-    #run all tests
-    testPath="features"
+    #run all tests except setup
+    testPath="features --tags ~@setup"
+elif [ "$arg1" == "setup" ]; then
+    #run setup
+    testPath="features/setup.feature"
 elif [ "$arg1" == "student" ]; then
     #run student tests
     testPath="features/student_features"
