@@ -8,6 +8,11 @@ Given /^I am logged in as a teacher$/ do
   page.should have_content("Teacher Home")
 end
 
+Given /^I am logged in as a teacher2$/ do
+  login($teacherLogin2, $teacherPassword2);
+  page.should have_content("Teacher Home")
+end
+
 #############
 ### When ####
 #############
