@@ -58,8 +58,14 @@ def createTestProject(teacherLogin, teacherPassword)
     createTestActivity()
     
     ###create steps
-    createTestStep('Text/HTML Page')
-    createTestStep('Open Response')
+    createTestStep('Text/HTML Page', '<html><head><title></title></head><body>This is an HTML step.</body></html>')
+    createTestStep('Open Response', 'This is an Open Response step.')
+    
+    ##enable idea basket and student file uploader
+    click_button('Edit Info')
+    check('enableIdeaManager')
+    check('enableStudentAssetUploader')
+    find('span', :text => 'SAVE CHANGES').click
   end
 
   return projectId
@@ -67,7 +73,6 @@ end
 
 #must be called from within_frame('authorfrm')
 def createTestActivity()
-  ###create an activity
   click_button('Add Activity')
   find('#createSequenceDialog').visible?.should == true
     
@@ -95,11 +100,11 @@ def createTestActivity()
     
   #compare the activity title
   find('#' + titleInputId).value.should == activityName
-    
 end
 
 #must be called from within_frame('authorfrm')
-def createTestStep(stepType)
+#this will add steps to the first activity
+def createTestStep(stepType, prompt)
   click_button('Add Step')
   find('#createNodeDialog').visible?.should == true
     
@@ -135,39 +140,66 @@ def createTestStep(stepType)
     
   #create the step
   click_button('Submit')
-    
+  
+  #we should see the prompt to select the location for the new step
+  page.should have_content('Select a new location')
+  
   #find all the steps
   steps = page.all('.node')
+  
+  #get the total number of steps
+  totalNumSteps = steps.length
+  
+  #this new step is the last step and is currently in the inactive steps area
+  #we need to place it at the end of the first activity which we will do below
+  stepNumber = totalNumSteps - 1
+  
+  ##now we will insert the step at the end of the first activity
+  
+  #add the step to the end of the first activity
+  if steps.length == 0 || steps.length == 1
+    #there are no steps so we will just add it to the activity
     
-  #add the step to the end of the activity
-  if steps.length == 0
+    #find the first activity
     firstActivity = find('.seq')
       
     if firstActivity != nil
+      #click on the first activity to place the step there
       firstActivity.click
     end
   else
-    steps[steps.length - 1].click
-  end
+    #there are other steps so we will add it after the last step in the first activity
     
+    #click on the second to last step so that this step will be placed after it
+    steps[steps.length - 2].click
+  end
+  
+  ##now we will edit the prompt for the step
+  
   #get the last step
   steps = page.all('.node')
-  lastStep = steps[steps.length - 1]
-  nodeDivId = lastStep[:id]
+  lastStep = steps[stepNumber]
     
-  #get the node id
-  nodeId = /.*--(.*)--.*/.match(nodeDivId)[1]
-    
-  #get the title input
+  #get the title input for the step
   titleInput = lastStep.all('input')[1]
     
-  #make sure the step was successfully added
+  #make sure the step was successfully added by comparing the step name
   titleInput.value.should == stepName
+  
+  #get all the edit buttons
+  editButtons = page.all('.editNodeInput')
+  
+  #click the edit button for our new step
+  editButton = editButtons[stepNumber]
+  editButton.click
+
+  #set the prompt
+  fill_in 'promptInput', :with => prompt
+  click_button('Save & Close')
 end
 
 #teacher should already be logged in
 def createTestRun(projectId)
-  #login(teacherLogin, teacherPassword)
   visit '/webapp/teacher/index.html'
   page.should have_content("Teacher Home")
   find('a', :text => 'Management').click
@@ -178,6 +210,9 @@ def createTestRun(projectId)
     find('input').set(projectId)
     find('input').native.send_keys(:return)
   end
+  
+  #after the search filter has completed it will display "Showing X Projects"
+  page.should have_content('Showing')
   
   #create the run
   page.should have_content('Test Project')

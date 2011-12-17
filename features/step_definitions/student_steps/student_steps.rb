@@ -76,6 +76,15 @@ When /^I enter "([^"]*)" into the "([^"]*)" in the step$/ do |text, elementId|
   end
 end
 
+When /^I launch the test run for the first time$/ do
+  find('#' << $runId).click
+  find_by_id('byMyself').click
+end
+
+When /^I launch the test run$/ do
+  find('#' << $runId).click
+end
+
 #Then
 
 Then /^I should see "([^"]*)" in the VLE$/ do |text|
