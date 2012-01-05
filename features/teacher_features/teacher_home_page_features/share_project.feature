@@ -10,6 +10,6 @@ Feature: Share project
     And I click on the "Owned (My Custom Projects)" link
     And I click on the "Share" link within the "myProjects" element
     And I see "Sharing Permissions"
-    And I enter "aa3" into the "sharedOwnerUsernameInput" field in the "shareIfrm" frame
+    And I enter "$teacherLogin2" into the "sharedOwnerUsernameInput" field in the "shareIfrm" frame
     And I click on the "Save" button in the "shareIfrm" frame
-    Then I should see "aa3" in the "sharedProjectPermissions" element in the "shareIfrm" frame
+    Then I should see "$teacherLogin2" in the "sharedProjectPermissions" element in the "shareIfrm" frame

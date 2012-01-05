@@ -489,6 +489,12 @@ When /^I give a "([^"]*)" of "([^"]*)" to "([^"]*)" in the Grade By "([^"]*)" pa
   end
 end
 
+When /^I search for project "([^"]*)"$/ do |searchValue|
+  within('#keyword_input_0') do
+    find('input').set(searchValue)
+    find('input').native.send_keys(:return)
+  end
+end
 
 #############
 ### Then ####

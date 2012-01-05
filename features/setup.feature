@@ -11,8 +11,10 @@ Feature: Run the setup to create the features/setup_variables.rb file
     And I create the admin account
     And I create the teacher 1 account
     And I create the teacher 2 account
-    And I create the project
-    And I create the run
+    And I create the project1
+    And I create the run1
+    And I create the project2
+    And I create the run2
     And I create the student 1 account
     And I create the student 2 account
     And I create the student 3 account

@@ -10,7 +10,8 @@ Feature: Preview project
     
   Scenario: Preview a project from the Browse WISE Projects page
     Given I am logged in as a teacher
-    When I click on the "Preview" link
+    When I click on the "Browse WISE Projects" link
+    And I click on the "Preview" link
     Then I should see the preview window open
   
   Scenario: Preview a project from the Grade & Manage Classroom Runs page
@@ -22,6 +23,6 @@ Feature: Preview project
   Scenario: Preview a project from the Grade & Manage Classroom Runs page from the Project Details popup
     Given I am logged in as a teacher
     When I click on the "Grade & Manage Classroom Runs" link
-    And I click on the "16" link
+    And I click on the "$projectId1" link
     And I click on the "Preview" link
     Then I should see the preview window open

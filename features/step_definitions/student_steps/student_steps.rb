@@ -77,12 +77,12 @@ When /^I enter "([^"]*)" into the "([^"]*)" in the step$/ do |text, elementId|
 end
 
 When /^I launch the test run for the first time$/ do
-  find('#' << $runId).click
+  find('#' << $runId1).click
   find_by_id('byMyself').click
 end
 
 When /^I launch the test run$/ do
-  find('#' << $runId).click
+  find('#' << $runId1).click
 end
 
 #Then

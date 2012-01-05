@@ -12,7 +12,7 @@ Feature: Browse projects
     Given I am logged in as a teacher
     When I click on the "Browse WISE Projects" link
     And I click on the "Owned (My Custom Projects)" link
-    Then I should see "(ID: 1090)"
+    Then I should see "$projectId1"
 
   Scenario: Browse projects shared with me
     Given I am logged in as a teacher

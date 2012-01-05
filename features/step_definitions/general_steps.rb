@@ -43,6 +43,9 @@ When /^I click on the button with id "([^"]*)"$/ do |button_text|
 end
 
 When /^I click on the "([^"]*)" link$/ do |link|
+  if(link == '$projectId1')
+    link = $projectId1
+  end
   find('a', :text => link).click
 end
 
@@ -65,6 +68,10 @@ When /^I click on the "([^"]*)" link within the "([^"]*)" element$/ do |text, el
 end
 
 When /^I enter "([^"]*)" into the "([^"]*)" field in the "([^"]*)" frame$/ do |text, field, frameId|
+  if(text == '$teacherLogin2')
+    text = $teacherLogin2
+  end
+  
   within_frame(frameId) do
     fill_in field, :with => text
   end
@@ -83,10 +90,17 @@ end
 #Then
 
 Then /^I should see "([^"]*)"$/ do |text|
+  if(text == '$projectId1')
+    text = $projectId1
+  end
   page.should have_content(text)
 end
 
 Then /^I should see "([^"]*)" in the "([^"]*)" element in the "([^"]*)" frame$/ do |text, elementId, frameId|
+  if(text == '$teacherLogin2')
+    text = $teacherLogin2
+  end
+  
   within_frame(frameId) do
     within('#' + elementId) do
       page.should have_content(text)

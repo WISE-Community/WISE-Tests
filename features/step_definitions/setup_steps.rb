@@ -51,7 +51,7 @@ def createTestProject(teacherLogin, teacherPassword)
     find_by_id('projectInput').set('Test Project')
     click_button('Submit')
     should have_content('Project Title');
-    projectId = find_by_id('projectIdDisplay').text
+    
     find_by_id('projectTitleInput').set('Test Project')
     
     ###create activity
@@ -68,6 +68,12 @@ def createTestProject(teacherLogin, teacherPassword)
     check('enableIdeaManager')
     check('enableStudentAssetUploader')
     find('span', :text => 'SAVE CHANGES').click
+    
+    #get the project id
+    projectId = find_by_id('projectIdDisplay').text
+    
+    click_button('Exit to Home')
+    click_link('Sign Out')
   end
 
   return projectId
@@ -201,8 +207,8 @@ def createTestStep(stepType, prompt)
 end
 
 #teacher should already be logged in
-def createTestRun(projectId)
-  visit '/webapp/teacher/index.html'
+def createTestRun(teacherLogin, teacherPassword, projectId)
+  login(teacherLogin, teacherPassword)
   page.should have_content("Teacher Home")
   find('a', :text => 'Management').click
   find('a', :text => 'Browse WISE Projects').click
@@ -243,6 +249,8 @@ def createTestRun(projectId)
   #get the run code
   runCode = find('#projectRunConfirmTable').find('div').text
   
+  click_link('Sign Out')
+  
   return projectId, runId, runCode
 end
 
@@ -272,37 +280,51 @@ And /^I create the teacher 2 account$/ do
   $mySetup.puts '$teacherPassword2 = "' + $teacherPassword2 + '"'
 end
 
-And /^I create the project$/ do
+And /^I create the project1$/ do
   #create project 1 with teacher account 1
-  $parentProjectId = createTestProject($teacherLogin1, $teacherPassword1)
-  $mySetup.puts '$parentProjectId = "' + $parentProjectId + '"'
+  $parentProjectId1 = createTestProject($teacherLogin1, $teacherPassword1)
+  $mySetup.puts '$parentProjectId1 = "' + $parentProjectId1 + '"'
 end
 
-And /^I create the run$/ do
+And /^I create the run1$/ do
   #create run 1 with project 1 with teacher account 1
-  $projectId, $runId, $runCode = createTestRun($parentProjectId)
-  $mySetup.puts '$projectId = "' + $projectId + '"'
-  $mySetup.puts '$runId = "' + $runId + '"'
-  $mySetup.puts '$runCode = "' + $runCode + '"'
+  $projectId1, $runId1, $runCode1 = createTestRun($teacherLogin1, $teacherPassword1, $parentProjectId1)
+  $mySetup.puts '$projectId1 = "' + $projectId1 + '"'
+  $mySetup.puts '$runId1 = "' + $runId1 + '"'
+  $mySetup.puts '$runCode1 = "' + $runCode1 + '"'
+end
+
+And /^I create the project2$/ do
+  #create project 2 with teacher account 2
+  $parentProjectId2 = createTestProject($teacherLogin2, $teacherPassword2)
+  $mySetup.puts '$parentProjectId2 = "' + $parentProjectId2 + '"'
+end
+
+And /^I create the run2$/ do
+  #create run 2 with project 2 with teacher account 2
+  $projectId2, $runId2, $runCode2 = createTestRun($teacherLogin2, $teacherPassword2, $parentProjectId2)
+  $mySetup.puts '$projectId2 = "' + $projectId2 + '"'
+  $mySetup.puts '$runId2 = "' + $runId2 + '"'
+  $mySetup.puts '$runCode2 = "' + $runCode2 + '"'
 end
 
 And /^I create the student 1 account$/ do
   #create student account 1 with run 1 period 1
-  $studentLogin1, $studentPassword1 = createTestStudentAccount($runCode, '1')
+  $studentLogin1, $studentPassword1 = createTestStudentAccount($runCode1, '1')
   $mySetup.puts '$studentLogin1 = "' + $studentLogin1 + '"'
   $mySetup.puts '$studentPassword1 = "' + $studentPassword1 + '"'
 end
 
 And /^I create the student 2 account$/ do
   #create student account 2 with run 1 period 1
-  $studentLogin2, $studentPassword2 = createTestStudentAccount($runCode, '1')
+  $studentLogin2, $studentPassword2 = createTestStudentAccount($runCode1, '1')
   $mySetup.puts '$studentLogin2 = "' + $studentLogin2 + '"'
   $mySetup.puts '$studentPassword2 = "' + $studentPassword2 + '"'
 end
 
 And /^I create the student 3 account$/ do
   #create student account 3 with run 1 period 2
-  $studentLogin3, $studentPassword3 = createTestStudentAccount($runCode, '2')
+  $studentLogin3, $studentPassword3 = createTestStudentAccount($runCode1, '2')
   $mySetup.puts '$studentLogin3 = "' + $studentLogin3 + '"'
   $mySetup.puts '$studentPassword3 = "' + $studentPassword3 + '"'
 end

@@ -4,8 +4,10 @@ Feature: Create run
   I want to be able to navigate through the setup a classroom run wizard
   
   Scenario: Create a run using the setup a classroom run wizard
-    Given I am logged in as a teacher
+    Given I am logged in as a teacher2
     When I click on the "Browse WISE Projects" link
+    And I click on the "Owned (My Custom Projects)" link
+    And I search for project "Test Project"
     And I click on the "Start New Run" link
     And I click on the "Next" button
     And I click on the "Next" button
