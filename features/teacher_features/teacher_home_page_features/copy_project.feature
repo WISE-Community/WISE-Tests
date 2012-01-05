@@ -4,7 +4,7 @@ Feature: Copy project
   I want to be able to find a project and copy it
   
   Scenario: Copy a project
-    Given I am logged in as a teacher2
+    Given I am logged in as teacher2
     And I click on the "Management" link
     When I click on the "Browse WISE Projects" link
     And I click on the "Owned (My Custom Projects)" link

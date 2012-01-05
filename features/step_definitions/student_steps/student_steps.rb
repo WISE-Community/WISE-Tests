@@ -1,7 +1,7 @@
 
 #Given
 
-Given /^I am logged in as a student$/ do
+Given /^I am logged in as student1$/ do
   login($studentLogin1, $studentPassword1)
   page.should have_content("Student Home")
 end

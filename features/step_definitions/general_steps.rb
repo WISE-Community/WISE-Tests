@@ -17,11 +17,11 @@ end
 
 #When
 
-When /^I log in as a student$/ do
+When /^I log in as student1$/ do
   login($studentLogin1, $studentPassword1)
 end
 
-When /^I log in as a teacher$/ do
+When /^I log in as teacher1$/ do
   login($teacherLogin1, $teacherPassword1)
 end
 

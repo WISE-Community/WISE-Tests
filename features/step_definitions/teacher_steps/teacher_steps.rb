@@ -3,12 +3,12 @@
 ### Given ###
 #############
 
-Given /^I am logged in as a teacher$/ do
+Given /^I am logged in as teacher1$/ do
   login($teacherLogin1, $teacherPassword1);
   page.should have_content("Teacher Home")
 end
 
-Given /^I am logged in as a teacher2$/ do
+Given /^I am logged in as teacher2$/ do
   login($teacherLogin2, $teacherPassword2);
   page.should have_content("Teacher Home")
 end

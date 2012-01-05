@@ -4,7 +4,7 @@ Feature: Share project
   I want to be able to find a project and share it
 
   Scenario: Share a project
-    Given I am logged in as a teacher
+    Given I am logged in as teacher1
     And I click on the "Management" link
     When I click on the "Browse WISE Projects" link
     And I click on the "Owned (My Custom Projects)" link

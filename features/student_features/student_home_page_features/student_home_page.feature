@@ -5,12 +5,12 @@ Feature: Launch VLE
 
   Scenario: Launch the VLE using the Run Project button for the first time
     Given I am on the home page
-    When I log in as a student
+    When I log in as student1
     And I launch the test run for the first time
     Then I should see the div with id "contentDiv" in the VLE
 
   Scenario: Launch the VLE using the Run Project button
     Given I am on the home page
-    When I log in as a student
+    When I log in as student1
     And I launch the test run
     Then I should see the div with id "contentDiv" in the VLE
