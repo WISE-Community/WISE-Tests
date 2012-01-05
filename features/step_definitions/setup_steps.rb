@@ -59,7 +59,9 @@ def createTestProject(teacherLogin, teacherPassword)
     
     ###create steps
     createTestStep('Text/HTML Page', '<html><head><title></title></head><body>This is an HTML step.</body></html>')
-    createTestStep('Open Response', 'This is an Open Response step.')
+    createTestStep('Open Response', 'This is the first Open Response step.')
+    createTestStep('Open Response', 'This is the second Open Response step.')
+    createTestStep('Open Response', 'This is the third Open Response step.')
     
     ##enable idea basket and student file uploader
     click_button('Edit Info')

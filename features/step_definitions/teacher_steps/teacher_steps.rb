@@ -61,7 +61,7 @@ When /^I click on the "([^"]*)" "([^"]*)" Grading Tool link$/ do |gradeBy, revis
   counter = 0;
   elements = page.all('a', :text => revisions);
   foundElement = false;
-  
+
   if elements.length > 0
     #we found some elements
     until foundElement do
@@ -71,6 +71,7 @@ When /^I click on the "([^"]*)" "([^"]*)" Grading Tool link$/ do |gradeBy, revis
         #we have found an element that we want so we will click on it
         element.click;
         foundElement = true;
+        break;
       end
 
       counter += 1;
@@ -395,6 +396,100 @@ When /^I count the number of projects with the title "([^"]*)"$/ do |projectTitl
   $tempProjectCount = projectCount
 end
 
+When /^I click on student1 in the Grading Tool$/ do
+  within_frame("gradingIfrm") do
+    within_frame("topifrm") do
+      #click on the student1 username
+      page.find('a', :text => $studentLogin1).click
+    end
+  end
+end
+
+When /^I give a "([^"]*)" of "([^"]*)" to "([^"]*)" in the Grade By "([^"]*)" page in the Grading Tool$/ do |annotationType, value, target, gradingType|
+  within_frame("gradingIfrm") do
+    within_frame("topifrm") do
+      #array that will hold all the grading rows
+      gradingRows = []
+      
+      if(target == '$studentLogin1')
+        #get the student1 username
+        target = $studentLogin1
+      end
+      
+      if(value == '$unique')
+        #get the current time
+        time = Time.now
+    
+        #get the time in milliseconds
+        text = time.to_i.to_s
+    
+        #remember the input value so we can refer to it in future steps
+        $tempInputValue = text
+        
+        value = text
+      end
+      
+      if(gradingType == 'Team')
+        #get all the workgroup rows
+        gradingRows = all('.gradeByTeamGradingPageWorkStepTable')
+      elsif(gradingType == 'Step')
+        #get all the step rows
+        gradingRows = all('.studentWorkRow')
+      end
+      
+      #loop through all the rows
+      gradingRows.each { |gradingRow|
+        begin
+          #find the row that we want to grade
+          gradingRow.find('a', :text => target)
+          
+          #we have found the step we want to annotate because
+          #otherwise we would have hit the rescue case below
+          
+          if annotationType == 'score'
+            #get all the input elements
+            inputs = gradingRow.all('input')
+            
+            inputs.each { |input|
+              inputId = input[:id]
+            
+              if inputId.include? 'annotationScore'
+                #we have found the input for the score
+                input.set(value)
+                input.click
+                input.trigger('focus')
+                input.trigger('blur')
+              end
+            }
+          elsif annotationType == 'comment'
+            #get all the textarea elements
+            textAreas = gradingRow.all('textarea')
+
+            textAreas.each { |textArea|
+              textAreaId = textArea[:id]
+
+              if textAreaId.include? 'annotationComment'
+                #we have found the textarea for the comment
+                textArea.set(value)
+                textArea.click
+                textArea.trigger('focus')
+                textArea.trigger('blur')
+              end
+            }
+          elsif annotationType == 'flag'
+            #not implemented yet
+          end
+          
+          break
+        rescue
+          #catches element not found exception
+        end
+      }
+    end
+  end
+end
+
+
 #############
 ### Then ####
 #############
@@ -462,6 +557,11 @@ end
 Then /^I should see a student with a score of "([^"]*)" in the Grading Tool$/ do |score|
   within_frame("gradingIfrm") do
     within_frame("topifrm") do
+    
+      if(score == '$unique')
+        score = $tempInputValue
+      end
+    
       #get all the text inputs
       elements = page.all('input', :type => 'text');
       
@@ -481,6 +581,11 @@ end
 Then /^I should see a student with a comment of "([^"]*)" in the Grading Tool$/ do |comment|
   within_frame("gradingIfrm") do
     within_frame("topifrm") do
+    
+      if(comment == '$unique')
+        comment = $tempInputValue
+      end
+    
       #get all the textarea elemens
       elements = page.all('textarea');
       

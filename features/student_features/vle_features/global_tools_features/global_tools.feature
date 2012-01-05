@@ -6,8 +6,8 @@ Feature: VLE global tools
   Scenario: Use the navigation menu
     Given I am logged in as a student
     When I launch the test run
-    And I click on Step "1.2" in the VLE navigation menu
-    Then I should see "This is an Open Response step." in the step
+    And I click on Step "1.3" in the VLE navigation menu
+    Then I should see "This is the second Open Response step." in the step
 
   Scenario: Click the Full Screen button
     Given I am logged in as a student
@@ -64,12 +64,12 @@ Feature: VLE global tools
   Scenario: Save student work in a step
     Given I am logged in as a student
     When I launch the test run
-    And I click on Step "1.2" in the VLE navigation menu
-    And I see "This is an Open Response step." in the step
+    And I click on Step "1.3" in the VLE navigation menu
+    And I see "This is the second Open Response step." in the step
     And I see the element with id "responseBox" in the step
     And I enter "Hello" into the "responseBox" in the step
-    And I click on Step "1.1" in the VLE navigation menu
+    And I click on Step "1.2" in the VLE navigation menu
     And I click on the "Home" link in the VLE
     And I launch the test run
-    And I click on Step "1.2" in the VLE navigation menu
+    And I click on Step "1.3" in the VLE navigation menu
     Then I should see "Hello" in the element with id "responseBox" in the step
