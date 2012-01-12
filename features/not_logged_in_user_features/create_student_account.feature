@@ -22,6 +22,7 @@ Feature: Create Student Account
     And I click on the "Show Class Periods" link
     And I choose "1" from the "runCode_part2" dropdown    
     When I click on the "Create Account" link
+    And if I see "Account Already Exists" then I click on "Create New Account"
     Then I should see "Account Created!"
     And I should see "Your new Username is"
     

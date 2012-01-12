@@ -1,3 +1,4 @@
+$sleepDuration = 2
 
 def createTestTeacherAccount()
   visit '/webapp/teacher/registerteacher.html'
@@ -14,6 +15,11 @@ def createTestTeacherAccount()
   fill_in 'repeatedPassword', :with => 'a'
   fill_in 'howDidYouHearAboutUs', :with => 'Test'
   find('a', :text => 'Create Account').click
+  
+  if(page.has_content?('Account Already Exists'))
+    find('a', :text => 'Create New Account').click
+  end
+  
   page.should have_content('Account Created!')
   return page.find('.usernameDisplay').text, 'a'
 end
@@ -33,6 +39,11 @@ def createTestStudentAccount(runCode, period)
   find('a', :text => 'Show Class Periods').click
   find_by_id('runCode_part2').select(period)
   find('a', :text => 'Create Account').click
+  
+  if(page.has_content?('Account Already Exists'))
+    find('a', :text => 'Create New Account').click
+  end
+  
   page.should have_content('Account Created!')
   return page.find('.usernameDisplay').text, 'a'
 end
@@ -52,6 +63,11 @@ def createTestProject(teacherLogin, teacherPassword)
     click_button('Submit')
     should have_content('Project Title');
     
+    until find_by_id('projectTitleInput').visible?
+      #puts 1
+      sleep 1
+    end
+    
     find_by_id('projectTitleInput').set('Test Project')
     
     ###create activity
@@ -62,6 +78,8 @@ def createTestProject(teacherLogin, teacherPassword)
     createTestStep('Open Response', 'This is the first Open Response step.')
     createTestStep('Open Response', 'This is the second Open Response step.')
     createTestStep('Open Response', 'This is the third Open Response step.')
+    
+    sleep $sleepDuration
     
     ##enable idea basket and student file uploader
     click_button('Edit Info')
@@ -94,9 +112,11 @@ def createTestActivity()
   find_by_id('createSequenceInput').set(activityName)
   click_button('Submit')
   
+  sleep $sleepDuration
+  
   #add the activity to the beginning of the project
   find('.master').click
-    
+  
   #get the id of the first activity
   seqDivId = find('.seq')[:id]
     
@@ -129,7 +149,7 @@ def createTestStep(stepType, prompt)
   options = page.all('option')
     
   optionToSelect = nil
-    
+
   #loop through all the option elements
   options.each { |option|
     #find the option elements for the select box
@@ -225,6 +245,7 @@ def createTestRun(teacherLogin, teacherPassword, projectId)
   #create the run
   page.should have_content('Test Project')
   find('a', :text => 'Start New Run').click
+  
   page.should have_content('Step 1 of 5')
   click_button('Next')
   page.should have_content('Step 2 of 5')
@@ -280,13 +301,13 @@ And /^I create the teacher 2 account$/ do
   $mySetup.puts '$teacherPassword2 = "' + $teacherPassword2 + '"'
 end
 
-And /^I create the project1$/ do
+And /^I create the project 1$/ do
   #create project 1 with teacher account 1
   $parentProjectId1 = createTestProject($teacherLogin1, $teacherPassword1)
   $mySetup.puts '$parentProjectId1 = "' + $parentProjectId1 + '"'
 end
 
-And /^I create the run1$/ do
+And /^I create the run 1$/ do
   #create run 1 with project 1 with teacher account 1
   $projectId1, $runId1, $runCode1 = createTestRun($teacherLogin1, $teacherPassword1, $parentProjectId1)
   $mySetup.puts '$projectId1 = "' + $projectId1 + '"'
@@ -294,13 +315,13 @@ And /^I create the run1$/ do
   $mySetup.puts '$runCode1 = "' + $runCode1 + '"'
 end
 
-And /^I create the project2$/ do
+And /^I create the project 2$/ do
   #create project 2 with teacher account 2
   $parentProjectId2 = createTestProject($teacherLogin2, $teacherPassword2)
   $mySetup.puts '$parentProjectId2 = "' + $parentProjectId2 + '"'
 end
 
-And /^I create the run2$/ do
+And /^I create the run 2$/ do
   #create run 2 with project 2 with teacher account 2
   $projectId2, $runId2, $runCode2 = createTestRun($teacherLogin2, $teacherPassword2, $parentProjectId2)
   $mySetup.puts '$projectId2 = "' + $projectId2 + '"'

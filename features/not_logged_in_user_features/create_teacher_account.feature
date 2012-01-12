@@ -22,6 +22,7 @@ Feature: Create Teacher Account
     And I have entered "a" into the "repeatedPassword" field
     And I have entered "a" into the "howDidYouHearAboutUs" field
     When I click on the "Create Account" link
+    And if I see "Account Already Exists" then I click on "Create New Account"
     Then I should see "Account Created!"
     And I should see "Your new Username is"
     
