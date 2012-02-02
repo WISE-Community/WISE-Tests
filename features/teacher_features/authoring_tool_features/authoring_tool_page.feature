@@ -43,6 +43,7 @@ Feature: Author a project in the Authoring Tool
     And I click on the "Launch Authoring Tool" link
     And I click on the "Open Project" button in the Authoring Tool
     And I select the element "last" in group name "projectOption" in the "selectProject" select box in the Authoring Tool
+    And I should see "Loaded Project" or "also editing" in the Authoring Tool
     And I should see "Project Title" in the Authoring Tool
     And I should see "ID" in the Authoring Tool
     And I click on the "Add Activity" button in the Authoring Tool
@@ -58,6 +59,7 @@ Feature: Author a project in the Authoring Tool
     And I click on the "Launch Authoring Tool" link
     And I click on the "Open Project" button in the Authoring Tool
     And I select the element "last" in group name "projectOption" in the "selectProject" select box in the Authoring Tool
+    And I should see "Loaded Project" or "also editing" in the Authoring Tool
     And I should see "Project Title" in the Authoring Tool
     And I should see "ID" in the Authoring Tool
     And I click on the "Add Activity" button in the Authoring Tool

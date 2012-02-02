@@ -27,7 +27,7 @@ Feature: VLE global tools
     When I launch the test run
     And I click on the "My Work" link in the VLE
     Then I should see "My Work (with Teacher Feedback and Scores)" in the VLE
-    And I should see "All Work" in the VLE
+    And I should see "All My Work" in the VLE
 
   Scenario: Click the Add Idea button
     Given I am logged in as student1

@@ -85,7 +85,7 @@ def createTestProject(teacherLogin, teacherPassword)
     click_button('Edit Info')
     check('enableIdeaManager')
     check('enableStudentAssetUploader')
-    find('span', :text => 'SAVE CHANGES').click
+    find('span', :text => 'Save Changes').click
     
     #get the project id
     projectId = find_by_id('projectIdDisplay').text

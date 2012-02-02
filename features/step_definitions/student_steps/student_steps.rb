@@ -23,14 +23,14 @@ When /^I click on Step "([^"]*)" in the VLE navigation menu$/ do |stepPosition|
 
   #get the activity number and step number
   #activity 1 will be 0
-  #step 1 will be 0 
+  #step 1 will be 1 
   activity = positions[0];
-  step = positions[1];
+  step = positions[1] + 1;
 
   #look in the topifrm  
   within_frame("topifrm") do
     #find the acitivity div
-    within("#" + activity.to_s) do
+    within("#node_" + activity.to_s) do
       #find all the a links in this activity div
       stepLinks = all("a");
       
@@ -42,7 +42,7 @@ end
 
 When /^I see the project name "([^"]*)" in the VLE$/ do |projectName|
   within_frame("topifrm") do 
-    find_by_id("title").has_content?(projectName)
+    find_by_id("runTitle").has_content?(projectName)
   end
 end
 
@@ -109,7 +109,7 @@ end
 
 Then /^I should not see the project name in the VLE$/ do
   within_frame("topifrm") do
-    find_by_id("title").should_not be_visible
+    find_by_id("runTitle").should_not be_visible
   end
 end
 

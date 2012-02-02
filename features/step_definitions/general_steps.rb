@@ -43,6 +43,7 @@ When /^I click on the button with id "([^"]*)"$/ do |button_text|
 end
 
 When /^I click on the "([^"]*)" link$/ do |link|
+  sleep 5
   if(link == '$projectId1')
     link = $projectId1
   end

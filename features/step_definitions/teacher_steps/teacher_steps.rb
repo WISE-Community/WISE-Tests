@@ -195,7 +195,20 @@ When /^I see "([^"]*)" in the Authoring Tool$/ do |text|
   end
 end
 
+When /^I should see "([^"]*)" or "([^"]*)" in the Authoring Tool$/ do |text1, text2|
+  within_frame("authorfrm") do 
+    if page.has_content?(text1) or page.has_content?(text2)
+      #we have found what we are looking for
+    else
+      #we have not found what we are looking for
+      abort
+    end
+  end
+end
+
+
 When /^I see the "([^"]*)" popup in the Authoring Tool$/ do |elementId|
+  sleep 2
   within_frame("authorfrm") do 
     find('#' + elementId).visible?.should == true
   end
@@ -233,6 +246,7 @@ end
 #of the option in the select box or "first" or "last" for
 #the respective first or last elements in the select box
 When /^I select the element "([^"]*)" in group name "([^"]*)" in the "([^"]*)" select box in the Authoring Tool$/ do |optionValue, groupName, elementId|
+  sleep 2
   within_frame("authorfrm") do 
 
     #get all the option elements
@@ -487,6 +501,7 @@ When /^I give a "([^"]*)" of "([^"]*)" to "([^"]*)" in the Grade By "([^"]*)" pa
       }
     end
   end
+  sleep 5
 end
 
 When /^I search for project "([^"]*)"$/ do |searchValue|
@@ -608,6 +623,7 @@ Then /^I should see a student with a comment of "([^"]*)" in the Grading Tool$/ 
 end
 
 Then /^I should see the Premade Comments window open$/ do
+  sleep 2
   #check within the new window
   within_window(page.driver.browser.window_handles.last) do
     page.should have_content("Global Premade Comment List")
@@ -615,12 +631,14 @@ Then /^I should see the Premade Comments window open$/ do
 end
 
 Then /^I should see "([^"]*)" in the "([^"]*)" field in the Authoring Tool$/ do |text, elementId|
+  sleep 2
   within_frame("authorfrm") do 
     find_by_id(elementId).set(text)
   end
 end
 
 Then /^I should see the new activity as the first activity in the Authoring Tool$/ do
+  sleep 5
   within_frame("authorfrm") do 
     #get the id of the first activity
     seqDivId = find('.seq')[:id]
@@ -690,6 +708,7 @@ Then /^I should see the step as the second step in the Authoring Tool$/ do
 end
 
 Then /^I should see the number of steps increase in the Authoring Tool$/ do
+  sleep 2
   within_frame("authorfrm") do 
     steps = page.all('.node')
     steps.length.should == ($tempStepCount + 1)
@@ -697,6 +716,7 @@ Then /^I should see the number of steps increase in the Authoring Tool$/ do
 end
 
 Then /^I should see the number of activities increase in the Authoring Tool$/ do
+  sleep 2
   within_frame("authorfrm") do 
     activities = page.all('.seq')
     activities.length.should == ($tempActivityCount + 1)
