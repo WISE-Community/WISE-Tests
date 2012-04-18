@@ -186,6 +186,7 @@ Feature: Author a project in the Authoring Tool
     And I should see "ID" in the Authoring Tool
     And I click edit on the first step in the Authoring Tool
     And I see the "authorStepDialog" popup in the Authoring Tool
+    And I click on the "HTML" "span" in the Authoring Tool
     And I enter a unique value starting with "Hello" into the "promptInput" field in the Authoring Tool
     And I click on the "Save & Close" button in the Authoring Tool
     And I should not see the "authorStepDialog" popup in the Authoring Tool
@@ -202,6 +203,7 @@ Feature: Author a project in the Authoring Tool
     And I should see "ID" in the Authoring Tool
     And I click edit on the first step in the Authoring Tool
     And I see the "authorStepDialog" popup in the Authoring Tool
+    And I click on the "HTML" "span" in the Authoring Tool
     And I enter a unique value starting with "Hello" into the "promptInput" field in the Authoring Tool
     And I click on the "Save & Close" button in the Authoring Tool
     And I should not see the "authorStepDialog" popup in the Authoring Tool

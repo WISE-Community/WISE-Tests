@@ -19,12 +19,14 @@ Feature: Launch the Grading Tool
     Then I should see "STUDENT WORK" in the Grading Tool
     And I should see "TEACHER COMMENT / SCORE" in the Grading Tool
     
-  Scenario: Give a score to a student who has submitted work
+  Scenario: Give a score to a student who has submitted work (this test tends to fail even when nothing is wrong)
     Given I am logged in as teacher1
     When I click on the "Grade by Step" "Latest Work" Grading Tool link
     And I see "Select a step below to start grading" in the Grading Tool
     And I click on Step "1.3" in the Grading Tool
     And I see "STUDENT WORK" in the Grading Tool
+    And I give a "score" of "1" to "$studentLogin1" in the Grade By "Step" page in the Grading Tool
+    And I click on the "SAVE CHANGES" link in the Grading Tool
     And I give a "score" of "$unique" to "$studentLogin1" in the Grade By "Step" page in the Grading Tool
     And I click on the "SAVE CHANGES" link in the Grading Tool
     And I click on the "Change Step" link in the Grading Tool
@@ -36,12 +38,14 @@ Feature: Launch the Grading Tool
     And I see "STUDENT WORK" in the Grading Tool
     Then I should see a student with a score of "$unique" in the Grading Tool
     
-  Scenario: Give a comment to a student who has submitted work
+  Scenario: Give a comment to a student who has submitted work (this test tends to fail even when nothing is wrong)
     Given I am logged in as teacher1
     When I click on the "Grade by Step" "Latest Work" Grading Tool link
     And I see "Select a step below to start grading" in the Grading Tool
     And I click on Step "1.3" in the Grading Tool
     And I see "STUDENT WORK" in the Grading Tool
+    And I give a "comment" of "abc" to "$studentLogin1" in the Grade By "Step" page in the Grading Tool
+    And I click on the "SAVE CHANGES" link in the Grading Tool
     And I give a "comment" of "$unique" to "$studentLogin1" in the Grade By "Step" page in the Grading Tool
     And I click on the "SAVE CHANGES" link in the Grading Tool
     And I click on the "Change Step" link in the Grading Tool

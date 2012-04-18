@@ -3,6 +3,6 @@ Feature: Admin Login
   As a person with admin credentials
   I want to be able to login using those credentials
 
-  Scenario: Admin Login
+  Scenario: Admin Login (this assumes the login/password is admin/pass)
     Given I am logged in as an admin
     Then I should see "WISE Administrator Tools"

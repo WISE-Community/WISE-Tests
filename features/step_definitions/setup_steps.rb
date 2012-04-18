@@ -222,6 +222,7 @@ def createTestStep(stepType, prompt)
   editButton.click
 
   #set the prompt
+  find('span', :text => 'HTML').click
   fill_in 'promptInput', :with => prompt
   click_button('Save & Close')
 end

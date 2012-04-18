@@ -511,6 +511,13 @@ When /^I search for project "([^"]*)"$/ do |searchValue|
   end
 end
 
+
+When /^I click on the "([^"]*)" "([^"]*)" in the Authoring Tool$/ do |elementText, elementType|
+  within_frame("authorfrm") do
+    find(elementType, :text => elementText).click  
+  end
+end
+
 #############
 ### Then ####
 #############

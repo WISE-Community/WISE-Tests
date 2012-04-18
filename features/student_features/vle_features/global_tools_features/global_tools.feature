@@ -27,14 +27,13 @@ Feature: VLE global tools
     When I launch the test run
     And I click on the "My Work" link in the VLE
     Then I should see "My Work (with Teacher Feedback and Scores)" in the VLE
-    And I should see "All My Work" in the VLE
+    And I should see "% of Project Completed" in the VLE
 
   Scenario: Click the Add Idea button
     Given I am logged in as student1
     When I launch the test run
     And I click on the "Add Idea" link in the VLE
-    Then I should see "Add an Idea" in the VLE
-    And I should see "Type your idea here" in the VLE
+    Then I should see "Type your idea here" in the VLE
 
   Scenario: Click the Ideas button
     Given I am logged in as student1

@@ -10,8 +10,8 @@ Feature: Recover account
     And I click on the "Teacher Account" link
     And I see "Remember Your Username but Forgot Your Password?"
     And I enter "aa" into the "username" field
-    And I click on the "Send Password" button
-    Then I should see "A new password has been emailed to"
+    And I click on the "Change Password" button
+    Then I should see "An email has been sent to your email account"
     
   Scenario: Forgot teacher username
     Given I am on the home page
@@ -20,8 +20,8 @@ Feature: Recover account
     And I click on the "Teacher Account" link
     And I see "Forgot Your Username?"
     And I enter "a@here.com" into the "emailAddress" field
-    And I click on the "Send Username and Password" button
-    Then I should see "A new password has been emailed to"
+    And I click on the "Send Username" button
+    Then I should see "An email has been sent to your email account"
   
   Scenario: Forgot student password
     Given I am on the home page
