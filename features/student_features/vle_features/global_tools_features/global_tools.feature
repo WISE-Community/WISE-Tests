@@ -40,7 +40,7 @@ Feature: VLE global tools
     When I launch the test run
     And I click on the "Ideas" link in the VLE
     Then I should see "Idea Basket" in the Idea Basket in the VLE
-    And I should see "Ideas for this Project" in the Idea Basket in the VLE
+    And I should see "Private Idea Basket" in the Idea Basket in the VLE
 
   Scenario: Click the Files button
     Given I am logged in as student1
@@ -58,7 +58,7 @@ Feature: VLE global tools
     Given I am logged in as student1
     When I launch the test run
     And I click on the "Sign Out" link in the VLE
-    Then I should see "Sign in to WISE"
+    Then I should see the "j_username" element
 
   Scenario: Save student work in a step
     Given I am logged in as student1

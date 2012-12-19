@@ -14,7 +14,7 @@ Feature: Copy project
     And I click on the "Browse WISE Projects" link
     And I click on the "Owned (My Custom Projects)" link
     And I search for project "Test Project"
-    And I click on the "Copy (Customize)" link
+    And I click on the "Copy" link
     And I click on the "OK" button
     And I see "Successfully copied"
     And I click on the "OK" button

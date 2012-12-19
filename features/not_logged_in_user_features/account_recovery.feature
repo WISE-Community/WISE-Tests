@@ -9,7 +9,7 @@ Feature: Recover account
     And I see "What sort of WISE account do you have?"
     And I click on the "Teacher Account" link
     And I see "Remember Your Username but Forgot Your Password?"
-    And I enter "aa" into the "username" field
+    And I enter "$teacherLogin1" into the "username" field
     And I click on the "Change Password" button
     Then I should see "An email has been sent to your email account"
     
@@ -19,7 +19,7 @@ Feature: Recover account
     And I see "What sort of WISE account do you have?"
     And I click on the "Teacher Account" link
     And I see "Forgot Your Username?"
-    And I enter "a@here.com" into the "emailAddress" field
+    And I enter "testteacher@berkeley.edu" into the "emailAddress" field
     And I click on the "Send Username" button
     Then I should see "An email has been sent to your email account"
   
@@ -29,7 +29,7 @@ Feature: Recover account
     And I see "What sort of WISE account do you have?"
     And I click on the "Student Account" link
     And I see "Enter your WISE username"
-    And I enter "bb11" into the "userName" field
+    And I enter "$studentLogin1" into the "userName" field
     And I click on the "Next" button
     And I see "Please answer the password reminder question that you encountered during your initial registration"
     And I enter "a" into the "submittedAnswer" field
@@ -48,9 +48,9 @@ Feature: Recover account
     And I see "I can't remember my Username"
     And I click on the "I can't remember my Username" link
     And I see "Run a Search for Your Username"
-    And I enter "b" into the "firstName" field
-    And I enter "b" into the "lastName" field
+    And I enter "TestStuden" into the "firstName" field
+    And I enter "t" into the "lastName" field
     And I click on the "Search" button
     And I see "Found matches"
-    And I click on the "bb11" link
+    And I click on the "$studentLogin1" link
     Then I should see "Sign in to WISE"

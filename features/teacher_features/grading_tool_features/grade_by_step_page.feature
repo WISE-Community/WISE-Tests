@@ -64,6 +64,7 @@ Feature: Launch the Grading Tool
     And I click on Step "1.3" in the Grading Tool
     And I see "STUDENT WORK" in the Grading Tool
     And I click on the "Open Premade Comments" link in the Grading Tool
+    And I wait "5" seconds
     Then I should see the Premade Comments window open
     
   Scenario: Move to the next step using the "Next" link

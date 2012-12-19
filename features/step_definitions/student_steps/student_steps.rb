@@ -124,7 +124,15 @@ end
 Then /^I should see "([^"]*)" in the element with id "([^"]*)" in the step$/ do |text, elementId|
   within_frame("topifrm") do 
     within_frame("ifrm") do 
-      page.should have_selector("#" + elementId, :content => text)
+      elementText = ''
+      
+      if(find_by_id(elementId).text != '')
+        elementText = find_by_id(elementId).text 
+      elsif(find_by_id(elementId).value != '')
+        elementText = find_by_id(elementId).value
+      end
+      
+      elementText.should == text
     end
   end
 end

@@ -11,12 +11,14 @@ Feature: Access teacher popups
   Scenario: Access the Authoring Tool
     Given I am logged in as teacher1
     When I click on the "Edit Content" link and say OK to the warning
-    Then I should see "Exit to Home" in the Authoring Tool
+    And I should see "Exit to Home" in the Authoring Tool
+    And I click on the "Exit to Home" button in the Authoring Tool
+    Then I should see "Teacher Home"
     
   Scenario: Access the Edit Run Settings page
     Given I am logged in as teacher1
     When I click on the "Edit Run Settings" link
-    Then in the "Edit Run Settings" iframe I should see "Enable Idea Manager"
+    Then in the "Edit Run Settings" iframe I should see "Existing Class Periods"
 
   Scenario: Access the Researcher Tools page
     Given I am logged in as teacher1

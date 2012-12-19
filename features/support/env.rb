@@ -3,6 +3,8 @@ require 'rspec'
 require 'capybara'
 require 'capybara/dsl'
 require 'capybara/cucumber'
+require 'selenium-webdriver'
+require 'rubygems'
 
 Capybara.default_driver = :selenium
 Capybara.default_wait_time = 10

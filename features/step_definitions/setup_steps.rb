@@ -18,10 +18,13 @@ def createTestTeacherAccount()
   
   if(page.has_content?('Account Already Exists'))
     find('a', :text => 'Create New Account').click
+    
+    #say OK to the popup
+    page.driver.browser.switch_to.alert.accept
   end
   
   page.should have_content('Account Created!')
-  return page.find('.usernameDisplay').text, 'a'
+  return page.first('.usernameDisplay').text, 'a'
 end
 
 def createTestStudentAccount(runCode, period)
@@ -29,11 +32,11 @@ def createTestStudentAccount(runCode, period)
   fill_in 'firstname', :with => 'TestStuden'
   fill_in 'lastname', :with => 't'
   find_by_id('gender').select('Male')
-  find_by_id('birthmonth').select('1')
-  find_by_id('birthdate').select('1')
+  find_by_id('birthmonth').find("option[value='1']").click
+  find_by_id('birthdate').find("option[value='1']").click
   fill_in 'password', :with => 'a'
   fill_in 'repeatedPassword', :with => 'a'
-  find_by_id('accountQuestion').select('What is your middle name')
+  find_by_id('accountQuestion').find("option[value='QUESTION_ONE']").click
   fill_in 'accountAnswer', :with => 'a'
   fill_in 'runCode_part1', :with => runCode
   find('a', :text => 'Show Class Periods').click
@@ -42,6 +45,9 @@ def createTestStudentAccount(runCode, period)
   
   if(page.has_content?('Account Already Exists'))
     find('a', :text => 'Create New Account').click
+    
+    #say OK to the popup
+    page.driver.browser.switch_to.alert.accept
   end
   
   page.should have_content('Account Created!')
@@ -60,7 +66,7 @@ def createTestProject(teacherLogin, teacherPassword)
     click_button('Create Project')
     find('#createProjectDialog').visible?.should == true
     find_by_id('projectInput').set('Test Project')
-    click_button('Submit')
+    click_button('createProjectDialogSubmitButton')
     should have_content('Project Title');
     
     until find_by_id('projectTitleInput').visible?
@@ -90,7 +96,11 @@ def createTestProject(teacherLogin, teacherPassword)
     #get the project id
     projectId = find_by_id('projectIdDisplay').text
     
-    click_button('Exit to Home')
+    #exit the authoring tool
+    find_by_id('gotoDashboard').click
+    page.should have_content("Teacher Home")
+    
+    #sign out of the portal
     click_link('Sign Out')
   end
 
@@ -110,7 +120,7 @@ def createTestActivity()
   
   #set the activity name
   find_by_id('createSequenceInput').set(activityName)
-  click_button('Submit')
+  click_button('createActivityDialogSubmitButton')
   
   sleep $sleepDuration
   
@@ -167,7 +177,7 @@ def createTestStep(stepType, prompt)
   page.select optionToSelect.text, :from => 'createNodeType'
     
   #create the step
-  click_button('Submit')
+  click_button('createStepDialogSubmitButton')
   
   #we should see the prompt to select the location for the new step
   page.should have_content('Select a new location')
@@ -187,11 +197,11 @@ def createTestStep(stepType, prompt)
   #add the step to the end of the first activity
   if steps.length == 0 || steps.length == 1
     #there are no steps so we will just add it to the activity
-    
+
     #find the first activity
-    firstActivity = find('.seq')
+    firstActivity = first('.seq')
       
-    if firstActivity != nil
+    if !firstActivity.nil?
       #click on the first activity to place the step there
       firstActivity.click
     end
@@ -232,7 +242,7 @@ def createTestRun(teacherLogin, teacherPassword, projectId)
   login(teacherLogin, teacherPassword)
   page.should have_content("Teacher Home")
   find('a', :text => 'Management').click
-  find('a', :text => 'Browse WISE Projects').click
+  first('a', :text => 'Browse WISE Projects').click
 
   #find the project
   within('#keyword_input_0') do

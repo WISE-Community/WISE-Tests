@@ -18,4 +18,4 @@ Feature: Browse projects
     Given I am logged in as teacher1
     When I click on the "Browse WISE Projects" link
     And I click on the "Shared" link
-    Then I should see "Shared by"
+    Then I should see "Owned by"

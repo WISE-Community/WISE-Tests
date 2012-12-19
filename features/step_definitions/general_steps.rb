@@ -46,12 +46,14 @@ When /^I click on the "([^"]*)" link$/ do |link|
   sleep 5
   if(link == '$projectId1')
     link = $projectId1
+  elsif(link == '$studentLogin1')
+    link = $studentLogin1
   end
-  find('a', :text => link).click
+  first('a', :text => link).click
 end
 
 When /^I choose "([^"]*)" from the "([^"]*)" dropdown$/ do |dropDownValue, dropDownId|
-  find_by_id(dropDownId).select(dropDownValue)
+  find_by_id(dropDownId).find("option[value='" + dropDownValue + "']").click
 end
 
 When /^I click on the "([^"]*)" checkbox$/ do |checkboxId|
@@ -64,7 +66,13 @@ end
 
 When /^I click on the "([^"]*)" link within the "([^"]*)" element$/ do |text, elementId|
   within('#' + elementId) do
-    find('a', :text => text).click
+    first('a', :text => text).click
+  end
+end
+
+When /^I click on the first link with class "([^"]*)" within the "([^"]*)" element$/ do |className, elementId|
+  within('#' + elementId) do
+    first('.' + className).click
   end
 end
 
@@ -85,7 +93,32 @@ When /^I click on the "([^"]*)" button in the "([^"]*)" frame$/ do |text, frameI
 end
 
 When /^I enter "([^"]*)" into the "([^"]*)" field$/ do |text, elementId|
+  if(text == '$teacherLogin1')
+    text = $teacherLogin1
+  elsif(text == '$studentLogin1')
+    text = $studentLogin1
+  end
   fill_in elementId, :with => text
+end
+
+When /^if I see a popup then I click OK$/ do
+  #this will try to switch to the alert and accept it
+  #if there is no alert it will throw an exception which
+  #we will catch. we should really be catching the 
+  #NoAlertPresentError but I keep receiving this error
+  #when I try to do so
+  #uninitialized constant Capybara::Selenium::WebDriver (NameError)
+  #the NoAlertPresentError should be found at this path
+  #Selenium::WebDriver::Error::NoAlertPresentError
+  page.driver.browser.switch_to.alert.accept rescue Exception
+end
+
+When /^I refresh the page$/ do
+  visit [ current_path, page.driver.request.env['QUERY_STRING'] ].reject(&:blank?).join('?')
+end
+
+When /^I wait "([^"]*)" seconds$/ do |seconds|
+  sleep seconds.to_i
 end
 
 #Then
@@ -107,4 +140,8 @@ Then /^I should see "([^"]*)" in the "([^"]*)" element in the "([^"]*)" frame$/ 
       page.should have_content(text)
     end
   end
+end
+
+Then /^I should see the "([^"]*)" element$/ do |elementId|
+  page.should have_selector('#' + elementId)
 end

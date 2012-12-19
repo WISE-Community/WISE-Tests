@@ -5,11 +5,13 @@
 
 Given /^I am logged in as teacher1$/ do
   login($teacherLogin1, $teacherPassword1);
+  visit "/webapp/teacher/index.html"
   page.should have_content("Teacher Home")
 end
 
 Given /^I am logged in as teacher2$/ do
   login($teacherLogin2, $teacherPassword2);
+  visit "/webapp/teacher/index.html"
   page.should have_content("Teacher Home")
 end
 
@@ -20,14 +22,8 @@ end
 When /^I click on the "([^"]*)" button in the Authoring Tool$/ do |text|
   within_frame("authorfrm") do
     #capybara can't handle confirm dialog popups so we will just override the confirm function to always return true so we can move on with the test
-    page.evaluate_script('window.confirm = function() { return true; }')
+    #page.evaluate_script('window.confirm = function() { return true; }')
     click_button(text)
-  end
-end
-
-When /^I choose project "([^"]*)" from the "([^"]*)" dropdown in the Authoring Tool$/ do |dropDownValue, arg2|
-  within_frame("authorfrm") do
-    find_by_id("selectProject").select(dropDownValue)
   end
 end
 
@@ -85,6 +81,8 @@ When /^I click on the "([^"]*)" "([^"]*)" Grading Tool link$/ do |gradeBy, revis
     #we did not find any elements
     return false;
   end
+  
+  sleep 5
 end
 
 When /^I see "([^"]*)" in the Grading Tool$/ do |text|
@@ -267,7 +265,7 @@ When /^I select the element "([^"]*)" in group name "([^"]*)" in the "([^"]*)" s
       end
     }
     
-    if optionToSelect == nil
+    if optionToSelect.nil?
       #we did not find the option by value so we will try to find it by index or first or last
       
       counter = 0
@@ -317,20 +315,20 @@ end
 
 When /^I click on the master node in the Authoring Tool$/ do
   within_frame("authorfrm") do
-    find('.master').click
+    first('.master').click
   end
 end
 
 When /^I click on the first activity in the Authoring Tool$/ do
   within_frame("authorfrm") do
-    find('.seq').click
+    first('.seq').click
   end
 end
 
 When /^I select the first activity in the Authoring Tool$/ do
   within_frame("authorfrm") do
     #get the first activity elements
-    seqDiv = find('.seq')
+    seqDiv = first('.seq')
     
     #get the checkbox
     selectCheckBox = seqDiv.all('input')[0]
@@ -357,7 +355,7 @@ end
 When /^I select the first step in the Authoring Tool$/ do
   within_frame("authorfrm") do
     #get the step
-    stepDiv = find('.node')
+    stepDiv = first('.node')
     
     #get thecheckbox
     selectCheckBox = stepDiv.all('input')[0]
@@ -387,7 +385,7 @@ end
 When /^I click edit on the first step in the Authoring Tool$/ do
   within_frame("authorfrm") do
     #get the first Edit button
-    editButton = find('.editNodeInput')
+    editButton = first('.editNodeInput')
     editButton.click
   end
 end
@@ -534,15 +532,6 @@ Then /^I should see project "([^"]*)" loaded in the Authoring Tool$/ do |project
   end
 end
 
-Then /^I should see the preview window open$/ do
-  #check within the new window
-  within_window(page.driver.browser.window_handles.last) do
-    within_frame("topifrm") do 
-      page.should have_selector('#contentDiv')
-  	end
-  end
-end
-
 Then /^in the "([^"]*)" iframe I should see "([^"]*)"$/ do |popupName, text|
   if popupName == "Edit Run Settings"
     within_frame("editIfrm") do 
@@ -591,7 +580,7 @@ Then /^I should see a student with a score of "([^"]*)" in the Grading Tool$/ do
       end
     
       #get all the text inputs
-      elements = page.all('input', :type => 'text');
+      elements = page.all('input[type="text"]');
       
       elements.each { |element|
         #make sure the element is type text and is enabled
@@ -630,7 +619,7 @@ Then /^I should see a student with a comment of "([^"]*)" in the Grading Tool$/ 
 end
 
 Then /^I should see the Premade Comments window open$/ do
-  sleep 2
+  sleep 5
   #check within the new window
   within_window(page.driver.browser.window_handles.last) do
     page.should have_content("Global Premade Comment List")
@@ -648,7 +637,7 @@ Then /^I should see the new activity as the first activity in the Authoring Tool
   sleep 5
   within_frame("authorfrm") do 
     #get the id of the first activity
-    seqDivId = find('.seq')[:id]
+    seqDivId = first('.seq')[:id]
     
     #get the activity number
     seqNum = /master--seq_(\d*)--0/.match(seqDivId)[1]
@@ -664,7 +653,7 @@ end
 Then /^I should see the new step in the first activity in the Authoring Tool$/ do
   within_frame("authorfrm") do 
     #get the first step
-    firstStep = find('.node')
+    firstStep = first('.node')
     nodeDivId = firstStep[:id]
     
     #get the node id
@@ -715,7 +704,7 @@ Then /^I should see the step as the second step in the Authoring Tool$/ do
 end
 
 Then /^I should see the number of steps increase in the Authoring Tool$/ do
-  sleep 2
+  sleep 5
   within_frame("authorfrm") do 
     steps = page.all('.node')
     steps.length.should == ($tempStepCount + 1)
@@ -775,4 +764,17 @@ Then /^I should see the number of projects with the title "([^"]*)" increase$/ d
   
   #the count should have been increased by 1
   projectCount.should == ($tempProjectCount + 1)
+end
+
+Then /^I should see the preview window open$/ do
+  #check within the new window
+  within_window(page.driver.browser.window_handles.last) do
+    within_frame("topifrm") do 
+      page.should have_selector('#contentDiv')
+  	end
+  end
+end
+
+Then /^I close the window$/ do
+  page.execute_script "window.close();"
 end

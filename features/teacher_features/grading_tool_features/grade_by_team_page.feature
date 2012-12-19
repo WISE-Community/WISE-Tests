@@ -64,6 +64,7 @@ Feature: Launch the Grading Tool
     And I click on student1 in the Grading Tool
     And I see "STUDENT WORK" in the Grading Tool
     And I click on the "Open Premade Comments" link in the Grading Tool
+    And I wait "5" seconds
     Then I should see the Premade Comments window open
     
   Scenario: Navigate back to the team selection page by clicking "Change Team"

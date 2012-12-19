@@ -15,6 +15,9 @@ if [ -z "$arg1" ]; then
 elif [ "$arg1" == "setup" ]; then
     #run setup
     testPath="features/setup.feature"
+elif [ "$arg1" == "all" ]; then
+    #run setup and later run all tests except setup
+    testPath="features/setup.feature"
 elif [ "$arg1" == "student" ]; then
     #run student tests
     testPath="features/student_features"
@@ -33,3 +36,10 @@ echo "Running tests in:" $testPath
 
 #run the cucumber tests in the given directory
 cucumber $testPath
+
+if [ "$arg1" == "all" ]; then
+    #run all tests except setup
+    testPath="features --tags ~@setup"
+    echo "Running tests in:" $testPath
+    cucumber $testPath
+fi
