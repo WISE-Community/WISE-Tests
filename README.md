@@ -6,7 +6,7 @@ The tests expect an instance of WISE4 to be running at http://localhost:8080
 
 ## Setup
 
-[Install rvm](http://beginrescueend.com/rvm/install/) and then use rvm to install and use ruby 1.9.2.
+[Install rvm](https://rvm.io/rvm/install) and then use rvm to install and use ruby 1.9.2.
 
     rvm install 1.9.2
     rvm use 1.9.2
