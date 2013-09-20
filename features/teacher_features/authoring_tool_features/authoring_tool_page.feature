@@ -5,7 +5,7 @@ Feature: Author a project in the Authoring Tool
   
   Scenario: Launch authoring tool and open a project
     Given I am logged in as teacher2
-    And I am on the home page
+    And I am on the teacher home page
     When I click on the "Management" link
     And I click on the "Launch Authoring Tool" link
     And I click on the "Open Project" button in the Authoring Tool
@@ -18,7 +18,7 @@ Feature: Author a project in the Authoring Tool
     
   Scenario: Create a project
     Given I am logged in as teacher2
-    And I am on the home page
+    And I am on the teacher home page
     When I click on the "Management" link
     And I click on the "Launch Authoring Tool" link
     And I see "Exit to Home" in the Authoring Tool
@@ -37,7 +37,7 @@ Feature: Author a project in the Authoring Tool
    
   Scenario: Copy a project
     Given I am logged in as teacher2
-    And I am on the home page
+    And I am on the teacher home page
     When I click on the "Management" link
     And I click on the "Launch Authoring Tool" link
     And I see "Exit to Home" in the Authoring Tool
@@ -53,7 +53,7 @@ Feature: Author a project in the Authoring Tool
     
   Scenario: Add an activity to a project
     Given I am logged in as teacher2
-    And I am on the home page
+    And I am on the teacher home page
     When I click on the "Management" link
     And I click on the "Launch Authoring Tool" link
     And I click on the "Open Project" button in the Authoring Tool
@@ -74,7 +74,7 @@ Feature: Author a project in the Authoring Tool
 
   Scenario: Add a second activity to a project
     Given I am logged in as teacher2
-    And I am on the home page
+    And I am on the teacher home page
     When I click on the "Management" link
     And I click on the "Launch Authoring Tool" link
     And I click on the "Open Project" button in the Authoring Tool
@@ -95,7 +95,7 @@ Feature: Author a project in the Authoring Tool
   
   Scenario: Add a step to a project
     Given I am logged in as teacher2
-    And I am on the home page
+    And I am on the teacher home page
     When I click on the "Management" link
     And I click on the "Launch Authoring Tool" link
     And I click on the "Open Project" button in the Authoring Tool
@@ -116,7 +116,7 @@ Feature: Author a project in the Authoring Tool
     
   Scenario: Add a second step to a project
     Given I am logged in as teacher2
-    And I am on the home page
+    And I am on the teacher home page
     When I click on the "Management" link
     And I click on the "Launch Authoring Tool" link
     And I click on the "Open Project" button in the Authoring Tool
@@ -137,7 +137,7 @@ Feature: Author a project in the Authoring Tool
     
   Scenario: Move a step in a project
     Given I am logged in as teacher2
-    And I am on the home page
+    And I am on the teacher home page
     When I click on the "Management" link
     And I click on the "Launch Authoring Tool" link
     And I click on the "Open Project" button in the Authoring Tool
@@ -154,7 +154,7 @@ Feature: Author a project in the Authoring Tool
 
   Scenario: Move an activity in a project
     Given I am logged in as teacher2
-    And I am on the home page
+    And I am on the teacher home page
     When I click on the "Management" link
     And I click on the "Launch Authoring Tool" link
     And I click on the "Open Project" button in the Authoring Tool
@@ -171,7 +171,7 @@ Feature: Author a project in the Authoring Tool
 
   Scenario: Duplicate a step in a project
     Given I am logged in as teacher2
-    And I am on the home page
+    And I am on the teacher home page
     When I click on the "Management" link
     And I click on the "Launch Authoring Tool" link
     And I click on the "Open Project" button in the Authoring Tool
@@ -188,7 +188,7 @@ Feature: Author a project in the Authoring Tool
     
   Scenario: Duplicate an activity in a project
     Given I am logged in as teacher2
-    And I am on the home page
+    And I am on the teacher home page
     When I click on the "Management" link
     And I click on the "Launch Authoring Tool" link
     And I click on the "Open Project" button in the Authoring Tool
@@ -205,7 +205,7 @@ Feature: Author a project in the Authoring Tool
     
   Scenario: Delete a step in a project
     Given I am logged in as teacher2
-    And I am on the home page
+    And I am on the teacher home page
     When I click on the "Management" link
     And I click on the "Launch Authoring Tool" link
     And I click on the "Open Project" button in the Authoring Tool
@@ -222,7 +222,7 @@ Feature: Author a project in the Authoring Tool
 
   Scenario: Delete an activity in a project
     Given I am logged in as teacher2
-    And I am on the home page
+    And I am on the teacher home page
     When I click on the "Management" link
     And I click on the "Launch Authoring Tool" link
     And I click on the "Open Project" button in the Authoring Tool
@@ -239,7 +239,7 @@ Feature: Author a project in the Authoring Tool
     
   Scenario: Edit a step in a project and make sure it saves
     Given I am logged in as teacher2
-    And I am on the home page
+    And I am on the teacher home page
     When I click on the "Management" link
     And I click on the "Launch Authoring Tool" link
     And I click on the "Open Project" button in the Authoring Tool
@@ -261,7 +261,7 @@ Feature: Author a project in the Authoring Tool
     
   Scenario: Edit a step in a project and make sure the preview frame updates
     Given I am logged in as teacher2
-    And I am on the home page
+    And I am on the teacher home page
     When I click on the "Management" link
     And I click on the "Launch Authoring Tool" link
     And I click on the "Open Project" button in the Authoring Tool
@@ -283,7 +283,7 @@ Feature: Author a project in the Authoring Tool
     
   Scenario: Preview a project in the Authoring Tool
     Given I am logged in as teacher2
-    And I am on the home page
+    And I am on the teacher home page
     When I click on the "Management" link
     And I click on the "Launch Authoring Tool" link
     And I click on the "Open Project" button in the Authoring Tool
@@ -299,7 +299,7 @@ Feature: Author a project in the Authoring Tool
     
   Scenario: Exit to Home in the Authoring Tool
     Given I am logged in as teacher2
-    And I am on the home page
+    And I am on the teacher home page
     When I click on the "Management" link
     And I click on the "Launch Authoring Tool" link
     And I click on the "Open Project" button in the Authoring Tool

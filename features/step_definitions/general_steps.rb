@@ -11,6 +11,10 @@ Given /^I am on the home page$/ do
   visit "/webapp/index.html"
 end
 
+Given /^I am on the teacher home page$/ do
+  visit "/webapp/teacher/index.html"
+end
+
 Given /^I have entered "([^"]*)" into the "([^"]*)" field$/ do |text, field|
   fill_in field, :with => text
 end

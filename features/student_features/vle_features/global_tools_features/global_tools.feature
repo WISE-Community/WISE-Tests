@@ -40,7 +40,7 @@ Feature: VLE global tools
     When I launch the test run
     And I click on the "Ideas" link in the VLE
     Then I should see "Idea Basket" in the Idea Basket in the VLE
-    And I should see "Private Idea Basket" in the Idea Basket in the VLE
+    And I should see "Add Idea +" in the Idea Basket in the VLE
 
   Scenario: Click the Files button
     Given I am logged in as student1

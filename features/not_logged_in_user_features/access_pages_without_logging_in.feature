@@ -7,7 +7,7 @@ Feature: Access pages that do not require logging in
   Scenario: Go to the Browse WISE Curricula page
     Given I am on the home page
     When I click on the "Browse WISE Curricula" link
-    Then I should see "Preview WISE Projects"
+    Then I should see "Project Library"
   
   Scenario: Go to the Create WISE Account page
     Given I am on the home page

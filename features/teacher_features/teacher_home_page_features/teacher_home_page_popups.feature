@@ -23,4 +23,5 @@ Feature: Access teacher popups
   Scenario: Access the Researcher Tools page
     Given I am logged in as teacher1
     When I click on the "Researcher Tools" link
-    Then in the "Researcher Tools" iframe I should see "Export the latest student revision"
+    Then in the "Researcher Tools" iframe I should see "Export Latest Student Work"
+    And in the "Researcher Tools" iframe I should see "Export All Student Work"

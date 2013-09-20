@@ -39,7 +39,7 @@ def createTestStudentAccount(runCode, period)
   find_by_id('accountQuestion').find("option[value='QUESTION_ONE']").click
   fill_in 'accountAnswer', :with => 'a'
   fill_in 'runCode_part1', :with => runCode
-  find('a', :text => 'Show Class Periods').click
+  sleep 2
   find_by_id('runCode_part2').select(period)
   find('a', :text => 'Create Account').click
   

@@ -53,4 +53,4 @@ Feature: Recover account
     And I click on the "Search" button
     And I see "Found matches"
     And I click on the "$studentLogin1" link
-    Then I should see "Sign in to WISE"
+    Then I should see "Sign In"

@@ -6,4 +6,4 @@ Feature: Access the Compatibility Checker
   Scenario: Go to the Browse WISE Curricula page
     Given I am on the home page
     When I click on the "Check Compatibility" link
-    And I see "WISE4 System Check"
+    And I see "WISE System Check"

@@ -8,6 +8,7 @@ Feature: Share project
     And I click on the "Management" link
     When I click on the "Browse WISE Projects" link
     And I click on the "Owned (My Custom Projects)" link
+    And I wait "3" seconds
     And I click on the first link with class "shareProject" within the "myProjects" element
     And I see "Sharing Permissions"
     And I enter "$teacherLogin2" into the "sharedOwnerUsernameInput" field in the "shareIfrm" frame
