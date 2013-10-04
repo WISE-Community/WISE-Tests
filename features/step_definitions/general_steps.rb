@@ -19,6 +19,10 @@ Given /^I have entered "([^"]*)" into the "([^"]*)" field$/ do |text, field|
   fill_in field, :with => text
 end
 
+Given /^I have entered runCode2 into the "([^"]*)" field$/ do |field|
+  fill_in field, :with => $runCode2
+end
+
 #When
 
 When /^I log in as student1$/ do

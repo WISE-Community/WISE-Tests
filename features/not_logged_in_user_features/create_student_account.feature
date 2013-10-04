@@ -18,7 +18,7 @@ Feature: Create Student Account
     And I have entered "a" into the "repeatedPassword" field
     And I choose "QUESTION_ONE" from the "accountQuestion" dropdown
     And I have entered "a" into the "accountAnswer" field
-    And I have entered "Cobra853" into the "runCode_part1" field
+    And I have entered runCode2 into the "runCode_part1" field
     #And I click on the "Show Class Periods" link
     And I wait "2" seconds
     And I choose "1" from the "runCode_part2" dropdown    
