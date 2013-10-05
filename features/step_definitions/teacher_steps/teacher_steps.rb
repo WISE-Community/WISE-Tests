@@ -82,7 +82,7 @@ When /^I click on the "([^"]*)" "([^"]*)" Grading Tool link$/ do |gradeBy, revis
     return false;
   end
   
-  sleep 5
+  sleep 10
 end
 
 When /^I see "([^"]*)" in the Grading Tool$/ do |text|
@@ -622,7 +622,7 @@ Then /^I should see the Premade Comments window open$/ do
   sleep 5
   #check within the new window
   within_window(page.driver.browser.window_handles.last) do
-    page.should have_content("Global Premade Comment List")
+    page.should have_content("Premade Comments")
   end
 end
 

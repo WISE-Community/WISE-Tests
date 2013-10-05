@@ -85,6 +85,10 @@ When /^I click on the first link with class "([^"]*)" within the "([^"]*)" eleme
 end
 
 When /^I enter "([^"]*)" into the "([^"]*)" field in the "([^"]*)" frame$/ do |text, field, frameId|
+  if(text == '$teacherLogin1')
+    text = $teacherLogin1
+  end
+
   if(text == '$teacherLogin2')
     text = $teacherLogin2
   end
@@ -139,6 +143,10 @@ Then /^I should see "([^"]*)"$/ do |text|
 end
 
 Then /^I should see "([^"]*)" in the "([^"]*)" element in the "([^"]*)" frame$/ do |text, elementId, frameId|
+  if(text == '$teacherLogin1')
+    text = $teacherLogin1
+  end
+
   if(text == '$teacherLogin2')
     text = $teacherLogin2
   end

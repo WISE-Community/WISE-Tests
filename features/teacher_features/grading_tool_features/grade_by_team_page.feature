@@ -6,6 +6,7 @@ Feature: Launch the Grading Tool
   Scenario: Switch between periods
     Given I am logged in as teacher1
     When I click on the "Grade by Team" "Latest Work" Grading Tool link
+    And I wait "3" seconds
     And I see "Select a student team below to start grading" in the Grading Tool
     And period "All Periods" is selected
     And I click on period "Period 1"
@@ -14,6 +15,7 @@ Feature: Launch the Grading Tool
   Scenario: Click on a workgroup to view student work for that workgroup
     Given I am logged in as teacher1
     When I click on the "Grade by Team" "Latest Work" Grading Tool link
+    And I wait "3" seconds
     And I see "Select a student team below to start grading" in the Grading Tool
     And I click on student1 in the Grading Tool
     Then I should see "STUDENT WORK" in the Grading Tool
@@ -22,6 +24,7 @@ Feature: Launch the Grading Tool
   Scenario: Give a score to a student who has submitted work (this test tends to fail even when nothing is wrong)
     Given I am logged in as teacher1
     When I click on the "Grade by Team" "Latest Work" Grading Tool link
+    And I wait "3" seconds
     And I see "Select a student team below to start grading" in the Grading Tool
     And I click on student1 in the Grading Tool
     And I see "STUDENT WORK" in the Grading Tool
@@ -33,6 +36,7 @@ Feature: Launch the Grading Tool
     And I see "Select a student team below to start grading" in the Grading Tool
     And I close the Grading Tool
     And I click on the "Grade by Team" "Latest Work" Grading Tool link
+    And I wait "3" seconds
     And I see "Select a student team below to start grading" in the Grading Tool
     And I click on student1 in the Grading Tool
     And I see "STUDENT WORK" in the Grading Tool
@@ -41,6 +45,7 @@ Feature: Launch the Grading Tool
   Scenario: Give a comment to a student who has submitted work (this test tends to fail even when nothing is wrong)
     Given I am logged in as teacher1
     When I click on the "Grade by Team" "Latest Work" Grading Tool link
+    And I wait "3" seconds
     And I see "Select a student team below to start grading" in the Grading Tool
     And I click on student1 in the Grading Tool
     And I see "STUDENT WORK" in the Grading Tool
@@ -52,6 +57,7 @@ Feature: Launch the Grading Tool
     And I see "Select a student team below to start grading" in the Grading Tool
     And I close the Grading Tool
     And I click on the "Grade by Team" "Latest Work" Grading Tool link
+    And I wait "3" seconds
     And I see "Select a student team below to start grading" in the Grading Tool
     And I click on student1 in the Grading Tool
     And I see "STUDENT WORK" in the Grading Tool
@@ -60,6 +66,7 @@ Feature: Launch the Grading Tool
   Scenario: Open the Premade Comments page
     Given I am logged in as teacher1
     When I click on the "Grade by Team" "Latest Work" Grading Tool link
+    And I wait "3" seconds
     And I see "Select a student team below to start grading" in the Grading Tool
     And I click on student1 in the Grading Tool
     And I see "STUDENT WORK" in the Grading Tool
@@ -70,6 +77,7 @@ Feature: Launch the Grading Tool
   Scenario: Navigate back to the team selection page by clicking "Change Team"
     Given I am logged in as teacher1
     When I click on the "Grade by Team" "Latest Work" Grading Tool link
+    And I wait "3" seconds
     And I see "Select a student team below to start grading" in the Grading Tool
     And I click on student1 in the Grading Tool
     And I see "Current Team:" in the Grading Tool

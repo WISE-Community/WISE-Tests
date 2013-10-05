@@ -6,6 +6,7 @@ Feature: Launch the Grading Tool
   Scenario: Switch between periods
     Given I am logged in as teacher1
     When I click on the "Grade by Step" "Latest Work" Grading Tool link
+    And I wait "3" seconds
     And I see "Select a step below to start grading" in the Grading Tool
     And period "All Periods" is selected
     And I click on period "Period 1"
@@ -14,6 +15,7 @@ Feature: Launch the Grading Tool
   Scenario: Click on a step to view student work for that step
     Given I am logged in as teacher1
     When I click on the "Grade by Step" "Latest Work" Grading Tool link
+    And I wait "3" seconds
     And I see "Select a step below to start grading" in the Grading Tool
     And I click on Step "1.3" in the Grading Tool
     Then I should see "STUDENT WORK" in the Grading Tool
@@ -22,17 +24,21 @@ Feature: Launch the Grading Tool
   Scenario: Give a score to a student who has submitted work (this test tends to fail even when nothing is wrong)
     Given I am logged in as teacher1
     When I click on the "Grade by Step" "Latest Work" Grading Tool link
+    And I wait "3" seconds
     And I see "Select a step below to start grading" in the Grading Tool
     And I click on Step "1.3" in the Grading Tool
     And I see "STUDENT WORK" in the Grading Tool
     And I give a "score" of "1" to "$studentLogin1" in the Grade By "Step" page in the Grading Tool
     And I click on the "SAVE CHANGES" link in the Grading Tool
+    And I wait "3" seconds
     And I give a "score" of "$unique" to "$studentLogin1" in the Grade By "Step" page in the Grading Tool
     And I click on the "SAVE CHANGES" link in the Grading Tool
+    And I wait "3" seconds
     And I click on the "Change Step" link in the Grading Tool
     And I see "Select a step below to start grading" in the Grading Tool
     And I close the Grading Tool
     And I click on the "Grade by Step" "Latest Work" Grading Tool link
+    And I wait "3" seconds
     And I see "Select a step below to start grading" in the Grading Tool
     And I click on Step "1.3" in the Grading Tool
     And I see "STUDENT WORK" in the Grading Tool
@@ -41,17 +47,21 @@ Feature: Launch the Grading Tool
   Scenario: Give a comment to a student who has submitted work (this test tends to fail even when nothing is wrong)
     Given I am logged in as teacher1
     When I click on the "Grade by Step" "Latest Work" Grading Tool link
+    And I wait "3" seconds
     And I see "Select a step below to start grading" in the Grading Tool
     And I click on Step "1.3" in the Grading Tool
     And I see "STUDENT WORK" in the Grading Tool
     And I give a "comment" of "abc" to "$studentLogin1" in the Grade By "Step" page in the Grading Tool
     And I click on the "SAVE CHANGES" link in the Grading Tool
+    And I wait "3" seconds
     And I give a "comment" of "$unique" to "$studentLogin1" in the Grade By "Step" page in the Grading Tool
     And I click on the "SAVE CHANGES" link in the Grading Tool
+    And I wait "3" seconds
     And I click on the "Change Step" link in the Grading Tool
     And I see "Select a step below to start grading" in the Grading Tool
     And I close the Grading Tool
     And I click on the "Grade by Step" "Latest Work" Grading Tool link
+    And I wait "3" seconds
     And I see "Select a step below to start grading" in the Grading Tool
     And I click on Step "1.3" in the Grading Tool
     And I see "STUDENT WORK" in the Grading Tool
@@ -60,6 +70,7 @@ Feature: Launch the Grading Tool
   Scenario: Open the Premade Comments page
     Given I am logged in as teacher1
     When I click on the "Grade by Step" "Latest Work" Grading Tool link
+    And I wait "3" seconds
     And I see "Select a step below to start grading" in the Grading Tool
     And I click on Step "1.3" in the Grading Tool
     And I see "STUDENT WORK" in the Grading Tool
@@ -70,6 +81,7 @@ Feature: Launch the Grading Tool
   Scenario: Move to the next step using the "Next" link
     Given I am logged in as teacher1
     When I click on the "Grade by Step" "Latest Work" Grading Tool link
+    And I wait "3" seconds
     And I see "Select a step below to start grading" in the Grading Tool
     And I click on Step "1.3" in the Grading Tool
     And I see "Current Step: 1.3" in the Grading Tool
@@ -79,6 +91,7 @@ Feature: Launch the Grading Tool
   Scenario: Move to the next step using the "Previous" link
     Given I am logged in as teacher1
     When I click on the "Grade by Step" "Latest Work" Grading Tool link
+    And I wait "3" seconds
     And I see "Select a step below to start grading" in the Grading Tool
     And I click on Step "1.3" in the Grading Tool
     And I see "Current Step: 1.3" in the Grading Tool
@@ -88,6 +101,7 @@ Feature: Launch the Grading Tool
   Scenario: Navigate back to the step selection page by clicking "Change Step"
     Given I am logged in as teacher1
     When I click on the "Grade by Step" "Latest Work" Grading Tool link
+    And I wait "3" seconds
     And I see "Select a step below to start grading" in the Grading Tool
     And I click on Step "1.3" in the Grading Tool
     And I see "Current Step: 1.3" in the Grading Tool
